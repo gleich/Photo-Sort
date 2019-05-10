@@ -7,3 +7,5 @@ Will merge multiple drives with only photos onto one drive. The main reason that
 - Year
     - Month
         - Day
+
+_Remember, documentation always comes last_
