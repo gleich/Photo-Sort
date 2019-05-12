@@ -16,6 +16,6 @@ def get_subprocess_output(shell_command):
 
 
 # Testing:
-command = str((subprocess.run(['pwd'], capture_output=True)))
+# command = str((subprocess.run(['pwd'], capture_output=True)))
 # print(command)
-print(get_subprocess_output(command))
+# print(get_subprocess_output(command))
