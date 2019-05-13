@@ -1,23 +1,39 @@
-from util import subprocess_functions
+import subprocess_functions
 
 
-def list_Images():
+def get_subprocess_output(subprocess_command):
     """
-    Will list all of the photos in the current directory and the subdirectories.
-    :return: array listing all the paths of the images (Files in the current directory will will be listed with just their file name).
+    Will get the output of a subprocess command that has been ran.
+    :param subprocess_command: the command that was recorded.
+    :return: the command's output
     """
-    raw_subprocess_output = subprocess_functions.run(['ls', '-R'], capture_output=True)
-    raw_output_section = raw_subprocess_output.split(",")[3]
-    complete_output = raw_output_section[8:]
-    raw_output_items = complete_output.split("\n")
-    out_put_items = []  # Removes blank instances
-    for i in range(raw_output_items):
-        if len(raw_output_items[i]) < 1:
-            raw_output_items.pop(i)
-        elif "/"
+    string_command = str(subprocess_command)
+    stdout_position = string_command.find("stdout")
+    stderr_position = string_command.find("stderr")
+    relative_string = string_command[stdout_position:stderr_position]
+    final_string = relative_string[relative_string.find("'") + 1:-3]
+    return final_string
 
 
+# Testing:
+# command = str((subprocess.run(['pwd'], capture_output=True)))
+# print(command)
+# print(get_subprocess_output(command))
 
 
+def run_command(shell_command, get_output):
+    """
+    Will run a shell command using the subprocess module
+    :param shell_command: The command that is going to be ran
+    :param get_output: Will capture the output of the command
+    :return: the command output
+    """
+    command = shell_command.split(" ")
+    command_ran = subprocess.run(command, capture_output=get_output)
+    return command_ran
 
-    
+
+# Testing:
+# print(run_command("find . -type f", True))
+# Testing with get_subprocess_output:
+# print(get_subprocess_output(run_command("find . -type f", True)))
