@@ -1,13 +1,13 @@
 import subprocess
 
 
-def get_subprocess_output(shell_command):
+def get_subprocess_output(subprocess_command):
     """
     Will get the output of a subprocess command that has been ran.
-    :param shell_command: the command that was recorded.
+    :param subprocess_command: the command that was recorded.
     :return: the command's output
     """
-    string_command = str(shell_command)
+    string_command = str(subprocess_command)
     stdout_position = string_command.find("stdout")
     stderr_position = string_command.find("stderr")
     relative_string = string_command[stdout_position:stderr_position]
