@@ -59,4 +59,4 @@ def list_image_paths():
 
 
 # Testing
-list_image_paths()
+# list_image_paths()
