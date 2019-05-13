@@ -57,5 +57,6 @@ def list_image_paths():
             for file in file_paths:
                 files.append(file)
 
+
 # Testing
 list_image_paths()
