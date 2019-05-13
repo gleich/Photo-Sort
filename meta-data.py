@@ -37,7 +37,7 @@ def run_command(shell_command, get_output):
 # Testing:
 # print(run_command("find . -type f", True))
 # Testing with get_subprocess_output:
-# print(get_subprocess_output(run_command("find . -type f", True)))
+# print(get_subprocess_output(run_command("pwd", True)))
 
 
 def list_image_paths():
@@ -48,15 +48,20 @@ def list_image_paths():
     files = []
     with open("supported_file_types.json") as supported_file_types:
         file_types = json.load(supported_file_types)
-        print(file_types)
         for extenstion in file_types:
             command_to_run = "find . -iname '*." + extenstion + "'"
             ran_command = run_command(command_to_run, True)
             command_output = get_subprocess_output(ran_command)
-            file_paths = command_output.split("\n")
-            for file in file_paths:
-                files.append(file)
+            if "\n" in command_output:
+                file_paths = command_output.split("\n")
+                for file in file_paths:
+                    if file != '':
+                        files.append(file)
+            else:
+                if command_output != '':
+                    files.append(command_output)
+    return files
 
 
 # Testing
-# list_image_paths()
+print(list_image_paths())
