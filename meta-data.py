@@ -1,4 +1,5 @@
-import subprocess_functions
+import subprocess
+import json
 
 
 def get_subprocess_output(subprocess_command):
@@ -37,3 +38,24 @@ def run_command(shell_command, get_output):
 # print(run_command("find . -type f", True))
 # Testing with get_subprocess_output:
 # print(get_subprocess_output(run_command("find . -type f", True)))
+
+
+def list_image_paths():
+    """
+    Will list all the photos in the current directory and in all subdirectories.
+    :return: array of the photo paths
+    """
+    files = []
+    with open("supported_file_types.json") as supported_file_types:
+        file_types = json.load(supported_file_types)
+        print(file_types)
+        for extenstion in file_types:
+            command_to_run = "find . -iname '*." + extenstion + "'"
+            ran_command = run_command(command_to_run, True)
+            command_output = get_subprocess_output(ran_command)
+            file_paths = command_output.split("\n")
+            for file in file_paths:
+                files.append(file)
+
+# Testing
+list_image_paths()
