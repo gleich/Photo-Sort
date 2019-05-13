@@ -20,4 +20,4 @@ def list_Images():
 
 
 
-    CompletedProcess(args=['ls', '-R'], returncode=0, stdout=b'child_folder\npython.py\nscript.sh\n\n./child_folder:\nchild_file.txt\n', stderr=b'')
+    
