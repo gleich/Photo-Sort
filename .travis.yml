@@ -5,5 +5,4 @@ python:
     - "3.7"
 install:
     - pip install -r requirements.txt
-script:
-    - test_exif_data
+script: python test_exif_data.py
