@@ -51,11 +51,10 @@ def list_image_paths():
             command_to_run = ['find', '.', '-iname', '*' + extension + '']
             ran_command = run_command(command_to_run, True)
             command_output = get_subprocess_output(ran_command)
-            if "\n" in command_output:
-                file_paths = command_output.split("\n")
+            if "\\n" in command_output:
+                file_paths = command_output.split("\\n")
                 for file in file_paths:
                     if file != '':
-                        print("File:", file)
                         strip_1 = file.strip("\\n")
                         files.append(strip_1)
             else:
