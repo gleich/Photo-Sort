@@ -29,8 +29,7 @@ def run_command(shell_command, get_output):
     :param get_output: Will capture the output of the command
     :return: the command output
     """
-    command = shell_command.split(" ")
-    command_ran = subprocess.run(command, capture_output=get_output)
+    command_ran = subprocess.run(shell_command, capture_output=get_output)
     return command_ran
 
 
@@ -48,15 +47,17 @@ def list_image_paths():
     files = []
     with open("supported_file_types.json") as supported_file_types:
         file_types = json.load(supported_file_types)
-        for extenstion in file_types:
-            command_to_run = "find . -iname '*." + extenstion + "'"
+        for extension in file_types:
+            command_to_run = ['find', '.', '-iname', '*' + extension + '']
             ran_command = run_command(command_to_run, True)
             command_output = get_subprocess_output(ran_command)
             if "\n" in command_output:
                 file_paths = command_output.split("\n")
                 for file in file_paths:
                     if file != '':
-                        files.append(file)
+                        print("File:", file)
+                        p1 = file.strip("\\n")
+                        files.append(p1)
             else:
                 if command_output != '':
                     files.append(command_output)
