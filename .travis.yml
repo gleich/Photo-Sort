@@ -1,5 +1,7 @@
 language: python
 python:
     - "3.6"
+install:
+    - pip install -r requirirements.txt
 script:
-    - python test_exif_data.py
+    - test_exif_data
