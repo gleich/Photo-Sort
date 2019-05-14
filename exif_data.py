@@ -56,8 +56,8 @@ def list_image_paths():
                 for file in file_paths:
                     if file != '':
                         print("File:", file)
-                        p1 = file.strip("\\n")
-                        files.append(p1)
+                        strip_1 = file.strip("\\n")
+                        files.append(strip_1)
             else:
                 if command_output != '':
                     files.append(command_output)
