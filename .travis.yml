@@ -4,4 +4,4 @@ python:
 install:
     - pip install subprocess
 script:
-    - exif_data
+    - test_exif_data
