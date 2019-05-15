@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Matt-Gleich/Photo-Merge.png)](https://travis-ci.org/Matt-Gleich/Photo-Merge)
+[![Build Status](https://travis-ci.org/Matt-Gleich/Photo-Merge.svg?branch=master)](https://travis-ci.org/Matt-Gleich/Photo-Merge)
 
 # Photo-Merge
 📷 Photo migration and management system
