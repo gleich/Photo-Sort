@@ -60,7 +60,7 @@ def list_to_dict(lst):
                 odd_indexes.append(lst[i])
             elif i % 2 == 1 or i == 0:
                 even_indexes.append(lst[i])
-        final_dict = dict(zip(odd_indexes ,even_indexes))
+        final_dict = dict(zip(odd_indexes, even_indexes))
         return final_dict
     else:
         raise "The list needs to have an even amount of"
