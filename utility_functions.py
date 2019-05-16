@@ -40,3 +40,31 @@ def run_command(shell_command, get_output):
 # print(run_command("find . -type f", True))
 # Testing with get_subprocess_output:
 # print(get_subprocess_output(run_command("pwd", True)))
+
+
+#########################
+#General Purpose python:#
+#########################
+
+
+def list_to_dict(lst):
+    """
+    Takes a list an turns it into a list
+    :param lst: the list that will be turned into a dict
+    """
+    if len(lst) % 2 != 1:
+        odd_indexes = []
+        even_indexes = []
+        for i in range(len(lst)):
+            if i % 2 == 0:
+                odd_indexes.append(lst[i])
+            elif i % 2 == 1 or i == 0:
+                even_indexes.append(lst[i])
+        final_dict = dict(zip(odd_indexes ,even_indexes))
+        return final_dict
+    else:
+        raise "The list needs to have an even amount of"
+
+
+# Testing
+# print(list_to_dict(["a", "b", "c", "d"]))
