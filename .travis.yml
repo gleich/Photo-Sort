@@ -2,4 +2,4 @@ dist: xenial
 language: python
 python:
     - "3.7"
-script: python test_exif_data.py
+script: python unittest_files.py
