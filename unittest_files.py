@@ -1,33 +1,43 @@
 import unittest
-import exif_data
+import photo_functions
+import utility_functions
 
 
 class TestExifData(unittest.TestCase):
     """
-    Will test all the function in the file exif_data.py
+    Will test all the function in the file photo_functions.py
     """
 
+    ###############################################
+    #Testing the functions in utility_functions.py#
+    ###############################################
+
+    # Subprocess functions:
     def test_run_command(self):
         """
         Tests the run_command function
         """
-        result = exif_data.run_command(["pwd"], True)
+        result = utility_functions.run_command(["pwd"], True)
         self.assertEqual(str(type(result)), "<class 'subprocess.CompletedProcess'>")
 
 
+    # Subprocess functions:
     def test_get_subprocess_output(self):
         """
         Tests the get_subprocess_output function
         """
-        result = exif_data.get_subprocess_output(exif_data.run_command(["pwd"], True))
+        result = utility_functions.get_subprocess_output(utility_functions.run_command(["pwd"], True))
         self.assertEqual(str(type(result)), "<class 'str'>")
 
+    ###############################################
+    #Testing the functions in photo_functions.py#
+    ###############################################
 
     def test_list_image_paths(self):
         """
         Tests the list_image_paths function
         """
-        result = exif_data.list_image_paths()
+        result = photo_functions.list_image_paths()
         self.assertEqual(str(type(result)), "<class 'list'>")
 
 
