@@ -63,7 +63,7 @@ def list_to_dict(lst):
         final_dict = dict(zip(odd_indexes, even_indexes))
         return final_dict
     else:
-        raise "The list needs to have an even amount of"
+        print("The list needs to have an even amount of")
 
 
 # Testing
