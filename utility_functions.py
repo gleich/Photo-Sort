@@ -85,7 +85,7 @@ def list_to_dict(lst):
 # print(list_to_dict(["a", "b", "c", "d"]))
 
 
-# This files is not gonna be unittested, this is due to the fact that there is no returned items.
+# This files is not gonna be unit-tested, this is due to the fact that there is no returned items.
 def print_list_index(iterable_items):
     """
     Will list the indexes of all the items in a list. This is for testing.
@@ -99,3 +99,7 @@ def print_list_index(iterable_items):
     if str(type(iterable_items)) == "<class 'list'>":
         for i in range(len(iterable_items)):
             print(iterable_items[i], ":", i)
+
+
+# Testing:
+# print_list_index('./photos/test_image.jpg')
