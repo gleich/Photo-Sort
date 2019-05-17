@@ -54,7 +54,7 @@ def get_file_creation_data(file_path):
 
 
 # Testing:
-print(get_file_creation_data('./photos/test_image.jpg'))
+# print(get_file_creation_data('./photos/test_image.jpg'))
 
 
 #########################
