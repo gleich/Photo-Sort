@@ -92,7 +92,7 @@ def print_list_index(iterable_items):
     :param iterable_item: list or string that will be iterated through
     :return: nothing, it really just prints the items to the terminal.
     """
-    if str(type(iterable_items)) == "<class 'str>":
+    if str(type(iterable_items)) == "<class 'str'>":
         characters = list(iterable_items)
         for i in range(len(characters)):
             print(characters[i], ":", i)
