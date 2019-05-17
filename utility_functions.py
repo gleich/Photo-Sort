@@ -42,6 +42,21 @@ def run_command(shell_command, get_output):
 # print(get_subprocess_output(run_command("pwd", True)))
 
 
+def get_file_creation_data(file_path):
+    """
+    Finds when the photo was created. This is needed because it is not something that we get when using the exiftool.
+    :param file_path:  The path of the file that the date will be gotton for.
+    :return: string that says what the date of creation is for the file using the ISO format.
+    """
+    ran_command = run_command(["stat", file_path], True)
+    command_output = get_subprocess_output(ran_command)
+    return command_output
+
+
+# Testing:
+print(get_file_creation_data('./photos/test_image.jpg'))
+
+
 #########################
 #General Purpose python:#
 #########################
@@ -68,3 +83,19 @@ def list_to_dict(lst):
 
 # Testing
 # print(list_to_dict(["a", "b", "c", "d"]))
+
+
+# This files is not gonna be unittested, this is due to the fact that there is no returned items.
+def print_list_index(iterable_items):
+    """
+    Will list the indexes of all the items in a list. This is for testing.
+    :param iterable_item: list or string that will be iterated through
+    :return: nothing, it really just prints the items to the terminal.
+    """
+    if str(type(iterable_items)) == "<class 'str>":
+        characters = list(iterable_items)
+        for i in range(len(characters)):
+            print(characters[i], ":", i)
+    if str(type(iterable_items)) == "<class 'list'>":
+        for i in range(len(iterable_items)):
+            print(iterable_items[i], ":", i)
