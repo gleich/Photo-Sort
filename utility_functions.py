@@ -86,19 +86,19 @@ def list_to_dict(lst):
 
 
 # This files is not gonna be unit-tested, this is due to the fact that there is no returned items.
-def print_list_index(iterable_items):
+def print_list_index(iterable_item):
     """
     Will list the indexes of all the items in a list. This is for testing.
     :param iterable_item: list or string that will be iterated through
     :return: nothing, it really just prints the items to the terminal.
     """
-    if str(type(iterable_items)) == "<class 'str'>":
-        characters = list(iterable_items)
+    if str(type(iterable_item)) == "<class 'str'>":
+        characters = list(iterable_item)
         for i in range(len(characters)):
             print(characters[i], ":", i)
-    if str(type(iterable_items)) == "<class 'list'>":
-        for i in range(len(iterable_items)):
-            print(iterable_items[i], ":", i)
+    if str(type(iterable_item)) == "<class 'list'>":
+        for i in range(len(iterable_item)):
+            print(iterable_item[i], ":", i)
 
 
 # Testing:
