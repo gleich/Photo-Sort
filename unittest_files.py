@@ -35,7 +35,7 @@ class TestExifData(unittest.TestCase):
         Tests the list_to_dict function
         """
         result = utility_functions.list_to_dict(["a", "b", "c", "d"])
-        self.assertEqual(str(type(result)), "<class 'list'>")
+        self.assertEqual(str(type(result)), "<class 'dict'>")
         self.assertEqual(len(result), 2)
         self.assertEqual(result["a"], "b")
         self.assertEqual(result["c"], "d")
