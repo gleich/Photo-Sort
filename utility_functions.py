@@ -43,7 +43,7 @@ def run_command(shell_command, get_output):
 # print(get_subprocess_output(run_command("pwd", True)))
 
 
-def get_file_creation_data(file_path):
+def get_file_creation_date(file_path):
     """
     Finds when the photo was created. This is needed because it is not something that we get when using the exiftool.
     :param file_path:  The path of the file that the date will be gotton for.
@@ -86,7 +86,7 @@ def get_file_creation_data(file_path):
 
 
 # Testing:
-# print(get_file_creation_data('./photos/test_image.jpg'))
+# print(get_file_creation_date('./photos/test_image.jpg'))
 
 
 #########################
