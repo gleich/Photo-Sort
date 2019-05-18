@@ -56,6 +56,7 @@ def get_photo_exif_data(photo_path):
     dictionary_elements["File Type"] = raw_dict["File Type"]
     dictionary_elements["Image Size"] = raw_dict["Image Size"]
     dictionary_elements["Image Size Sum"] = image_size_sum
+    dictionary_elements["Creation Date"] = UF.file_creation_date(photo_path)
     return dictionary_elements
 
 
