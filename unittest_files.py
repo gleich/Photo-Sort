@@ -50,9 +50,9 @@ class TestExifData(unittest.TestCase):
         self.assertEqual(str(type(result[0])), "<class 'int'>")
         self.assertEqual(str(type(result[1])), "<class 'int'>")
         self.assertEqual(str(type(result[2])), "<class 'int'>")
-        self.assertEqual(str(type(result[0])), 5)
-        self.assertEqual(str(type(result[0])), 13)
-        self.assertEqual(str(type(result[0])), 2019)
+        self.assertEqual(result[0], 5)
+        self.assertEqual(result[1], 13)
+        self.assertEqual(result[2], 2019)
 
 
     ###############################################
