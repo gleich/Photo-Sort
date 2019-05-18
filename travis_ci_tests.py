@@ -3,7 +3,7 @@ import photo_functions
 import utility_functions
 
 
-class TestExifData(unittest.TestCase):
+class TestTravisCI(unittest.TestCase):
     """
     Will test all the function in the file photo_functions.py
     """
