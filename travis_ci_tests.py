@@ -53,17 +53,5 @@ class TestTravisCI(unittest.TestCase):
         self.assertEqual(str(type(result)), "<class 'list'>")
 
 
-    def test_photo_exif_data(self):
-        """
-        Test the photo_exif_data function
-        """
-        result = photo_functions.photo_exif_data('./photos/test_image.jpg')
-        self.assertEqual(str(type(result)), "<class 'dict'>")
-        self.assertEqual(result["Photo Path"], './photos/test_image.jpg')
-        self.assertEqual(result["File Type"], "JPEG")
-        self.assertEqual(result["Image Size"], "450x280")
-        self.assertEqual(result["Image Size Sum"], 730)
-
-
 if __name__ == '__main__':
     unittest.main()
