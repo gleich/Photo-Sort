@@ -19,3 +19,19 @@ class TestUnixOnlyFunctions(unittest.TestCase):
         self.assertEqual(result[0], 5)
         self.assertEqual(result[1], 13)
         self.assertEqual(result[2], 2019)
+
+
+    def test_photo_exif_data(self):
+        """
+        Test the photo_exif_data function
+        """
+        result = photo_functions.photo_exif_data('./photos/test_image.jpg')
+        self.assertEqual(str(type(result)), "<class 'dict'>")
+        self.assertEqual(result["Photo Path"], './photos/test_image.jpg')
+        self.assertEqual(result["File Type"], "JPEG")
+        self.assertEqual(result["Image Size"], "450x280")
+        self.assertEqual(result["Image Size Sum"], 730)
+        self.assertEqual(result["Creation Date"], [5, 13, 2019])
+
+if __name__ == '__main__':
+    unittest.main()
