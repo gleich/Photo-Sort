@@ -63,7 +63,6 @@ class TestTravisCI(unittest.TestCase):
         self.assertEqual(result["File Type"], "JPEG")
         self.assertEqual(result["Image Size"], "450x280")
         self.assertEqual(result["Image Size Sum"], 730)
-        self.assertEqual(result["Creation Date"], [5, 13, 2019])
 
 
 if __name__ == '__main__':
