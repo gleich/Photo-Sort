@@ -1,4 +1,5 @@
 import subprocess
+import datetime
 
 
 #######################
@@ -49,8 +50,39 @@ def get_file_creation_data(file_path):
     :return: string that says what the date of creation is for the file using the ISO format.
     """
     ran_command = run_command(["stat", file_path], True)
-    command_output = get_subprocess_output(ran_command)
-    return command_output
+    raw_command_output = get_subprocess_output(ran_command)
+    command_output_trimmed = raw_command_output[63:83]
+    elements = command_output_trimmed.split(" ")
+    month_string = elements[0]
+    month_number = 0
+    day_number = int(elements[1])
+    year_number = int(elements[3])
+    if month_string == "January":
+        month_number += 1
+    elif month_string == "February":
+        month_number += 2
+    elif month_string == "March":
+        month_number += 3
+    elif month_string == "April":
+        month_number += 4
+    elif month_string == "May":
+        month_number += 5
+    elif month_string == "June":
+        month_number += 6
+    elif month_string == "July":
+        month_number += 7
+    elif month_string == "August":
+        month_number += 8
+    elif month_string == "September":
+        month_number += 9
+    elif month_string == "October":
+        month_number += 10
+    elif month_string == "November":
+        month_number += 11
+    elif month_string == "December":
+        month_number += 12
+    date = datetime.date(year_number, month_number, day_number)
+    return str(date)
 
 
 # Testing:
@@ -103,4 +135,3 @@ def print_list_index(iterable_item):
 
 # Testing:
 # print_list_index('./photos/test_image.jpg')
-# print_list_index(get_file_creation_data('./photos/test_image.jpg'))
