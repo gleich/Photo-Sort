@@ -3,7 +3,7 @@ import photo_functions
 import utility_functions
 
 
-class TestExifData(unittest.TestCase):
+class TestTravisCI(unittest.TestCase):
     """
     Will test all the function in the file photo_functions.py
     """
@@ -28,6 +28,18 @@ class TestExifData(unittest.TestCase):
         """
         result = utility_functions.get_subprocess_output(utility_functions.run_command(["pwd"], True))
         self.assertEqual(str(type(result)), "<class 'str'>")
+
+
+    def test_list_to_dict(self):
+        """
+        Tests the list_to_dict function
+        """
+        result = utility_functions.list_to_dict(["a", "b", "c", "d"])
+        self.assertEqual(str(type(result)), "<class 'dict'>")
+        self.assertEqual(len(result), 2)
+        self.assertEqual(result["a"], "b")
+        self.assertEqual(result["c"], "d")
+
 
     ###############################################
     #Testing the functions in photo_functions.py#
