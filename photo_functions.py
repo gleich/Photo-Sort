@@ -30,7 +30,7 @@ def list_image_paths():
 # list_image_paths()
 
 
-def get_photo_exif_data(photo_path):
+def photo_exif_data(photo_path):
     """
     Will get the exif data of a photo
     :param photo_path: the path to the photo in the current directory
@@ -61,4 +61,4 @@ def get_photo_exif_data(photo_path):
 
 
 # Testing
-# print(get_photo_exif_data('./photos/test_image.jpg'))
+# print(photo_exif_data('./photos/test_image.jpg'))
