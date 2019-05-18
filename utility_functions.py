@@ -103,3 +103,4 @@ def print_list_index(iterable_item):
 
 # Testing:
 # print_list_index('./photos/test_image.jpg')
+# print_list_index(get_file_creation_data('./photos/test_image.jpg'))
