@@ -1,5 +1,6 @@
 import subprocess
 import datetime
+import os
 
 
 #######################
@@ -49,10 +50,10 @@ def file_creation_date(file_path):
     :param file_path:  The path of the file that the date will be gotton for.
     :return: string that says what the date of creation is for the file using the ISO format.
     """
-    ran_command = run_command(["stat", file_path], True)
+    ran_command = run_command(["stat", "-f", "%SB", file_path], True)
     raw_command_output = get_subprocess_output(ran_command)
-    command_output_trimmed = raw_command_output[63:83]
-    elements = command_output_trimmed.split(" ")
+    command_output = raw_command_output.strip("\\n")
+    elements = command_output.split(" ")
     month_string = elements[0]
     month_number = 0
     day_number = int(elements[1])
@@ -81,13 +82,11 @@ def file_creation_date(file_path):
         month_number += 11
     elif month_string == "December":
         month_number += 12
-    date = datetime.date(year_number, month_number, day_number)
-    return str(date)
+    return [month_number, day_number, year_number]
 
 
 # Testing:
-# print(file_creation_date('./photos/test_image.jpg'))
-
+print(file_creation_date('./photos/test_image.jpg'))
 
 #########################
 #General Purpose python:#
