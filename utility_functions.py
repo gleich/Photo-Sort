@@ -86,7 +86,7 @@ def file_creation_date(file_path):
 
 
 # Testing:
-print(file_creation_date('./photos/test_image.jpg'))
+# print(file_creation_date('./photos/test_image.jpg'))
 
 #########################
 #General Purpose python:#
