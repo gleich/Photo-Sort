@@ -41,6 +41,20 @@ class TestExifData(unittest.TestCase):
         self.assertEqual(result["c"], "d")
 
 
+    def test_get_file_creation_date(self):
+        """
+        Tests the get_file_creation_date funtion
+        """
+        result = utility_functions.file_creation_date('./photos/test_image.jpg')
+        self.assertEqual(str(type(result)), "<class 'list'>")
+        self.assertEqual(str(type(result[0])), "<class 'int'>")
+        self.assertEqual(str(type(result[1])), "<class 'int'>")
+        self.assertEqual(str(type(result[2])), "<class 'int'>")
+        self.assertEqual(str(type(result[0])), 5)
+        self.assertEqual(str(type(result[0])), 13)
+        self.assertEqual(str(type(result[0])), 2019)
+
+
     ###############################################
     #Testing the functions in photo_functions.py#
     ###############################################
