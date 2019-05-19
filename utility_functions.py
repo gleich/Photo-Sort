@@ -1,6 +1,4 @@
 import subprocess
-import datetime
-import os
 
 
 #######################
@@ -125,10 +123,10 @@ def print_list_index(iterable_item):
     """
     if str(type(iterable_item)) == "<class 'str'>":
         characters = list(iterable_item)
-        for i in range(len(characters)):
+        for i in enumerate(characters):
             print(characters[i], ":", i)
     if str(type(iterable_item)) == "<class 'list'>":
-        for i in range(len(iterable_item)):
+        for i in enumerate(iterable_item):
             print(iterable_item[i], ":", i)
 
 
