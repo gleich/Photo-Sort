@@ -33,5 +33,6 @@ class TestUnixOnlyFunctions(unittest.TestCase):
         self.assertEqual(result["Image Size Sum"], 730)
         self.assertEqual(result["Creation Date"], [5, 13, 2019])
 
+
 if __name__ == '__main__':
     unittest.main()
