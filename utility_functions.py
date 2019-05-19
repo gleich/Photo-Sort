@@ -99,7 +99,7 @@ def list_to_dict(lst):
     if len(lst) % 2 != 1:
         odd_indexes = []
         even_indexes = []
-        for i in range(len(lst)):
+        for i in enumerate(lst):
             if i % 2 == 0:
                 odd_indexes.append(lst[i])
             elif i % 2 == 1 or i == 0:
