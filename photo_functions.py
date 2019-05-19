@@ -65,3 +65,20 @@ def photo_exif_data(photo_path):
 
 # Testing
 # print(photo_exif_data('./photos/test_image.jpg'))
+
+
+def write_data_to_JSON(photo_paths_lst):
+    """
+    Will get the exif data for a list of photos and write their data to a JSON file
+    :param photo_paths_lst: List of the path to all the photos.
+    """
+    elements_to_dump = []
+    for photo in photo_paths_lst:
+        exif_data = photo_exif_data(photo)
+        elements_to_dump.append(exif_data)
+    with open("exif_data.json", "w") as json_file:
+        json.dump(elements_to_dump, json_file)
+
+
+# Testing:
+# write_data_to_JSON(list_image_paths())
