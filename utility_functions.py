@@ -99,7 +99,7 @@ def list_to_dict(lst):
     if len(lst) % 2 != 1:
         odd_indexes = []
         even_indexes = []
-        for i in range(len(lst)):
+        for i in enumerate(lst):
             if i % 2 == 0:
                 odd_indexes.append(lst[i])
             elif i % 2 == 1 or i == 0:
@@ -123,10 +123,10 @@ def print_list_index(iterable_item):
     """
     if str(type(iterable_item)) == "<class 'str'>":
         characters = list(iterable_item)
-        for i in range(len(characters)):
+        for i in enumerate(characters):
             print(characters[i], ":", i)
     if str(type(iterable_item)) == "<class 'list'>":
-        for i in range(len(iterable_item)):
+        for i in enumerate(iterable_item):
             print(iterable_item[i], ":", i)
 
 
