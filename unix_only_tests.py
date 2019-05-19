@@ -1,5 +1,6 @@
 import unittest
 import utility_functions
+import photo_functions
 
 
 class TestUnixOnlyFunctions(unittest.TestCase):
