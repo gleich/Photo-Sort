@@ -1,5 +1,4 @@
 import os
-import utility_functions as UF
 import time
 
 
@@ -19,7 +18,11 @@ def cd_into_drive():
         while True:
             os.chdir("Volumes")
             print("-------------------------------------------------------")
-            print(os.listdir())
+            drive_numbers = 0
+            for drive in os.listdir():
+                drive_numbers += 1
+                print("Drive {drive_nums}: {item}".format(drive_nums=drive_numbers, item=drive))
+            print("")
             drive_name = input("What is the drive that you wanna use?\n")
             if drive_name in os.listdir():
                 os.chdir(drive_name)
