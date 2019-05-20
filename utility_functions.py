@@ -146,8 +146,11 @@ def find_index(item_to_find, list):
     for i in range(len(list)):
         if item_to_find == list[i]:
             index += i
-    return index
+    if list[index] == item_to_find:
+        return index
+    else:
+        return None
 
 
 # Testing:
-# print(find_index("Volume", ["Item", "volume", "Volume"]))
+print(find_index("Volume", ["Item", "volume", "Volume", "Volume"]))
