@@ -1,6 +1,7 @@
 import unittest
 import photo_functions
 import utility_functions
+import file_management_functions
 
 
 class TestTravisCI(unittest.TestCase):
@@ -49,7 +50,7 @@ class TestTravisCI(unittest.TestCase):
         """
         Tests the list_image_paths function
         """
-        result = photo_functions.list_image_paths()
+        result = photo_functions.list_image_paths(file_management_functions.pre_import_file_types())
         self.assertEqual(str(type(result)), "<class 'list'>")
 
 
