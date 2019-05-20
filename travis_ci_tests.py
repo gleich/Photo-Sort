@@ -41,18 +41,6 @@ class TestTravisCI(unittest.TestCase):
         self.assertEqual(result["c"], "d")
 
 
-    def test_find_index(self):
-        """
-        Test to the find_index function
-        """
-        result = utility_functions.find_index("Volume", ["Item1", "Item2", "Item3", "Volume"])
-        failed_result = utility_functions.find_index("Volume", ["Item1", "Item2", "Item3"])
-        self.assertEqual(str(type(result)), "<class 'int'>")
-        self.assertEqual(result,3)
-        self.assertEqual(result,3)
-        self.assertEqual(failed_result, None)
-
-
     ###############################################
     #Testing the functions in photo_functions.py#
     ###############################################
