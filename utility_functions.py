@@ -133,3 +133,21 @@ def print_list_index(iterable_item):
 
 # Testing:
 # print_list_index('./photos/test_image.jpg')
+
+
+def find_index(item_to_find, list):
+    """
+    Find the index of a string or int in a list
+    :param item_to_find: The item that the function will look for
+    :param list: The list that the function will search
+    :return: index of item
+    """
+    index = 0
+    for i in range(len(list)):
+        if item_to_find == list[i]:
+            index += i
+    return index
+
+
+# Testing:
+# print(find_index("Volume", ["Item", "volume", "Volume"]))
