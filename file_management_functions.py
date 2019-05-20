@@ -1,5 +1,6 @@
-import subprocess
+import os
 import utility_functions as UF
+import time
 
 
 def cd_into_drive():
@@ -7,10 +8,30 @@ def cd_into_drive():
     Will change the current directory into the directory of the drive that will be used.
     :param name: the name of the drive that will be used.
     """
-    UF.run_command(["cd", ["photos"]], False)
-    current_directory = UF.get_subprocess_output(UF.run_command(["pwd"], True))
-    return current_directory
+    project_location = os.getcwd()
+    directory_layers = len(project_location.split("/"))
+    command_parts = ["../"]
+    for i in range(directory_layers):
+        command_parts.append("../")
+    path = "".join(command_parts)
+    os.chdir(path)
+    if "Volumes" in os.listdir():
+        while True:
+            os.chdir("Volumes")
+            print("-------------------------------------------------------")
+            print(os.listdir())
+            drive_name = input("What is the drive that you wanna use?\n")
+            if drive_name in os.listdir():
+                os.chdir(drive_name)
+                print("The program is now set to this drive:", os.getcwd())
+                break
+            else:
+                print("That is not a valid drive. The program will restart in 5 seconds")
+                time.sleep(5)
+                continue
+    else:
+        raise Exception("Can't locate any drives")
 
 
 # Testing:
-print(cd_into_drive())
+cd_into_drive()
