@@ -1,5 +1,6 @@
 import os
 import time
+import json
 
 
 def cd_into_drive():
@@ -37,3 +38,13 @@ def cd_into_drive():
 
 # Testing:
 # cd_into_drive()
+
+
+def pre_import_file_types():
+    """
+    Will get the file types from the supported_file_types.json file
+    :return: array of file types.
+    """
+    with open("supported_file_types.json") as json_file:
+        file_types = json.load(json_file)
+    return file_types
