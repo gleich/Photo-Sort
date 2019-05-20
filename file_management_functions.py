@@ -5,7 +5,6 @@ import time
 def cd_into_drive():
     """
     Will change the current directory into the directory of the drive that will be used.
-    :param name: the name of the drive that will be used.
     """
     project_location = os.getcwd()
     directory_layers = len(project_location.split("/"))
