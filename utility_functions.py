@@ -38,7 +38,7 @@ def run_command(shell_command, get_output):
 
 
 # Testing:
-# print(run_command("find . -type f", True))
+# print(run_command(["find", ".", "-type", "f"], True))
 # Testing with get_subprocess_output:
 # print(get_subprocess_output(run_command("pwd", True)))
 
