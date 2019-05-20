@@ -41,9 +41,9 @@ class TestTravisCI(unittest.TestCase):
         self.assertEqual(result["c"], "d")
 
 
-    ###############################################
+    #############################################
     #Testing the functions in photo_functions.py#
-    ###############################################
+    #############################################
 
     def test_list_image_paths(self):
         """
