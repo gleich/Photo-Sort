@@ -1,5 +1,4 @@
 import utility_functions as UF
-import file_management_functions as FMF
 import json
 
 
@@ -27,6 +26,7 @@ def list_image_paths(file_types):
 
 
 # Testing
+# Please import FMF before running the command below:
 # list_image_paths(FMF.pre_import_file_types())
 
 
