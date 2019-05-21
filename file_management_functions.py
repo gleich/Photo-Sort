@@ -1,6 +1,7 @@
 import os
 import time
 import json
+import photo_functions as PF
 
 
 def cd_into_drive():
@@ -48,3 +49,40 @@ def pre_import_file_types():
     with open("supported_file_types.json") as json_file:
         file_types = json.load(json_file)
     return file_types
+
+
+def get_date_info(exif_array):
+    """
+    Will get all the infermation for the folder names (dates)
+    :param exif_array: The list of dictonraries that contains the exif data for each photos
+    :return: array of information
+    """
+    years = []
+    date_info = {}
+    for photo in exif_array:
+        creation_info = photo["Creation Date"]
+        year = creation_info[2]
+        if year not in years:
+            years.append(year)
+    for year in years:
+        date_info[year] = {}
+    for photo in exif_array:
+        creation_info = photo["Creation Date"]
+        month = creation_info[1]
+        year = creation_info[2]
+        if month not in date_info[year].keys():
+            current_layer = date_info[year]
+            current_layer[month] = []
+    for photo in exif_array:
+        creation_info = photo["Creation Date"]
+        day = creation_info[0]
+        month = creation_info[1]
+        year = creation_info[2]
+        set_year = date_info[year]
+        set_month = set_year[month]
+        if day not in set_month:
+            set_month.append(day)
+    return date_info
+
+# Testing
+print(PF.photo_exif_data(PF.list_image_paths(pre_import_file_types())))
