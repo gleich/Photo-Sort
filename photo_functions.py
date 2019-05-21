@@ -69,3 +69,21 @@ def photo_exif_data(photo_paths):
 
 # Testing
 # print(photo_exif_data(list_image_paths(FMF.pre_import_file_types())))
+
+
+def get_years_amount(exif_array):
+    """
+    A function that will get all the years from the exif data
+    :param exif_array:
+    :return: array_of_years
+    """
+    years = []
+    for dict in exif_array:
+        year = dict["Creation Date"][2]
+        if year not in years:
+            years.append(year)
+    return years
+
+
+# Testing
+print(get_years_amount(photo_exif_data(list_image_paths(FMF.pre_import_file_types()))))
