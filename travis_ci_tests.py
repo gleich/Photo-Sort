@@ -64,7 +64,11 @@ class TestTravisCI(unittest.TestCase):
         Tests the pre_import_file_types function
         """
         result = file_management_functions.pre_import_file_types()
+        more_than_one_element = False
+        if len(result) > 1:
+            more_than_one_element = True
         self.assertEqual(str(type(result)), "<class 'list'>")
+        self.assertTrue(more_than_one_element)
 
 
 if __name__ == '__main__':
