@@ -73,8 +73,8 @@ def photo_exif_data(photo_paths):
 
 def get_years(exif_array):
     """
-    A function that will get all the years from the exif data
-    :param exif_array:
+    Will get all the years from the exif data
+    :param exif_array: list of dicts for the exif data for each photo.
     :return: array_of_years
     """
     years = []
