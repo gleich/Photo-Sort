@@ -57,30 +57,6 @@ def file_creation_date(file_path):
     month_number = 0
     day_number = int(elements[1])
     year_number = int(elements[3])
-    if month_string == "January":
-        month_number += 1
-    elif month_string == "February":
-        month_number += 2
-    elif month_string == "March":
-        month_number += 3
-    elif month_string == "April":
-        month_number += 4
-    elif month_string == "May":
-        month_number += 5
-    elif month_string == "June":
-        month_number += 6
-    elif month_string == "July":
-        month_number += 7
-    elif month_string == "August":
-        month_number += 8
-    elif month_string == "September":
-        month_number += 9
-    elif month_string == "October":
-        month_number += 10
-    elif month_string == "November":
-        month_number += 11
-    elif month_string == "December":
-        month_number += 12
     return [month_number, day_number, year_number]
 
 
