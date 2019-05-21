@@ -8,6 +8,8 @@ class TestUnixOnlyFunctions(unittest.TestCase):
     Testing unix only functions. The reason that they are seperate from the travis_ci_tests is because travis CI runs the test in a linux enviroment, so they can't be stored there.
     """
 
+    print("This will only work on Matthew's Laptop")
+
     def test_get_file_creation_date(self):
         """
         Tests the get_file_creation_date funtion
