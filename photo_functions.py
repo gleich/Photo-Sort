@@ -37,7 +37,7 @@ def photo_exif_data(photo_paths):
     :param photo_path: the paths to the photos in the current directory
     :return: array of info
     """
-    dictonraries = []
+    dictionaries = []
     for file in photo_paths:
         command_to_run = UF.run_command(["exiftool", file], True)
         ran_command = UF.get_subprocess_output(command_to_run)
@@ -63,8 +63,8 @@ def photo_exif_data(photo_paths):
             dictionary_elements["Creation Date"] = UF.file_creation_date(file)
         except ValueError:
             pass
-        dictonraries.append(dictionary_elements)
-    return dictonraries
+        dictionaries.append(dictionary_elements)
+    return dictionaries
 
 
 # Testing
