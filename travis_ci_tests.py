@@ -54,5 +54,18 @@ class TestTravisCI(unittest.TestCase):
         self.assertEqual(str(type(result)), "<class 'list'>")
 
 
+    #######################################################
+    #Testing the functions in file_management_functions.py#
+    #######################################################
+
+
+    def test_pre_import_file_types(self):
+        """
+        Tests the pre_import_file_types function
+        """
+        result = file_management_functions.pre_import_file_types()
+        self.assertEqual(str(type(result)), "<class 'list'>")
+
+
 if __name__ == '__main__':
     unittest.main()
