@@ -74,3 +74,27 @@ def get_new_file_path(photo_date):
         new_month = "June"
     elif month == 7:
         new_month = "July"
+    elif month == 8:
+        new_month = "August"
+    elif month == 9:
+        new_month = "September"
+    elif month == 10:
+        new_month = "October"
+    elif month == 11:
+        new_month = "November"
+    elif month == 12:
+        new_month = "December"
+    if day == 1 or day == 21 or day == 31:
+        new_day = str(day) + "st"
+    elif day == 2 or day == 22 or day == 2:
+        new_day = str(day) + "nd"
+    elif day == 23:
+        new_day = str(day) + "rd"
+    else:
+        new_day = str(day) + "th"
+    final_string = "{y}/{m}/{d}".format(y=year,m=new_month,d=new_day)
+    return day
+
+
+# Testing
+print(get_new_file_path([22,8,2019]))
