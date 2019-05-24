@@ -1,6 +1,5 @@
 import utility_functions as UF
 import file_management_functions as FMF
-import json
 
 
 def list_image_paths(file_types):
