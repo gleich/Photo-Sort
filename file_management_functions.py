@@ -61,47 +61,24 @@ def new_file_path(photo_date):
     :param photo_date: The list for the date that is supplied from the exif data
     :return: Array of all the new file paths
     """
-    day = photo_date[0]
-    month = photo_date[1]
-    year = photo_date[2]
-    if month == 1:
-        new_month = "January"
-    elif month == 2:
-        new_month = "February"
-    elif month == 3:
-        new_month = "March"
-    elif month == 4:
-        new_month = "April"
-    elif month == 5:
-        new_month = "May"
-    elif month == 6:
-        new_month = "June"
-    elif month == 7:
-        new_month = "July"
-    elif month == 8:
-        new_month = "August"
-    elif month == 9:
-        new_month = "September"
-    elif month == 10:
-        new_month = "October"
-    elif month == 11:
-        new_month = "November"
-    elif month == 12:
-        new_month = "December"
-    if day in (1, 21, 31):
-        new_day = str(day) + "st"
-    elif day in (2, 22):
-        new_day = str(day) + "nd"
-    elif day == 23:
-        new_day = str(day) + "rd"
-    else:
-        new_day = str(day) + "th"
-    final_string = str(year) + "/" + str(new_month) + "/" + str(new_day)
-    return final_string
+    if len(photo_date) == 3:
+        month = photo_date[0]
+        day = photo_date[1]
+        year = photo_date[2]
+        if day in (1, 21, 31):
+            new_day = str(day) + "st"
+        elif day in (2, 22):
+            new_day = str(day) + "nd"
+        elif day == 23:
+            new_day = str(day) + "rd"
+        else:
+            new_day = str(day) + "th"
+        final_string = str(year) + "/" + str(month) + "/" + str(month) + "-" + str(new_day)
+        return final_string
 
 
 # Testing
-# print(new_file_path([22, 8, 2019]))
+# print(new_file_path(["August",  22, 2019]))
 
 
 def initialize_folders(raw_exif_data):
