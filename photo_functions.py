@@ -65,4 +65,4 @@ def photo_exif_data(photo_paths):
 
 
 # Testing
-print(photo_exif_data(list_image_paths(FMF.pre_import_file_types())))
+# print(photo_exif_data(list_image_paths(FMF.pre_import_file_types())))
