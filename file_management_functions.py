@@ -51,10 +51,14 @@ def pre_import_file_types():
     return file_types
 
 
+# Testing
+# print(pre_import_file_types())
+
+
 def new_file_path(photo_date):
     """
     Get the new file path for the photo. An example would be 2019/January/31st
-    :param exif_data: The list for the date that is supplied from the exif data
+    :param photo_date: The list for the date that is supplied from the exif data
     :return: Array of all the new file paths
     """
     day = photo_date[0]
