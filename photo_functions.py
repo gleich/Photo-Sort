@@ -60,6 +60,7 @@ def photo_exif_data(photo_paths):
         dictionary_elements["Image Size Sum"] = image_size_sum
         dictionary_elements["New Path"] = FMF.new_file_path(UF.file_creation_date(file))
         dictionary_elements["Creation Date"] = UF.file_creation_date(file)
+        dictionaries.append(dictionary_elements)
     return dictionaries
 
 
