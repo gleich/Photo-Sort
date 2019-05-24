@@ -97,7 +97,7 @@ def new_file_path(photo_date):
 
 
 # Testing
-print(new_file_path([22, 8, 2019]))
+# print(new_file_path([22, 8, 2019]))
 
 
 def initialize_folders(raw_exif_data):
