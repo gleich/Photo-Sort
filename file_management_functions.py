@@ -1,7 +1,6 @@
 import os
 import time
 import json
-import photo_functions as PF
 
 
 def cd_into_drive():
@@ -84,17 +83,17 @@ def get_new_file_path(photo_date):
         new_month = "November"
     elif month == 12:
         new_month = "December"
-    if day == 1 or day == 21 or day == 31:
+    if day in (1, 21, 31):
         new_day = str(day) + "st"
-    elif day == 2 or day == 22 or day == 2:
+    elif day in (2, 22):
         new_day = str(day) + "nd"
     elif day == 23:
         new_day = str(day) + "rd"
     else:
         new_day = str(day) + "th"
-    final_string = "{y}/{m}/{d}".format(y=year,m=new_month,d=new_day)
-    return day
+    final_string = str(year) + "/" + str(new_month) + "/" + str(new_day)
+    return final_string
 
 
 # Testing
-print(get_new_file_path([22,8,2019]))
+# print(get_new_file_path([22, 8, 2019]))
