@@ -6,7 +6,7 @@ import json
 def list_image_paths(file_types):
     """
     Will list all the photos in the current directory and in all subdirectories.
-    :param file_types:
+    :param file_types: array of the supported file types
     :return: array of the photo paths
     """
     files = []
