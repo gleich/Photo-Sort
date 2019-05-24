@@ -1,6 +1,7 @@
 import os
 import time
 import json
+# import photo_functions as PF
 
 
 def cd_into_drive():
@@ -96,4 +97,33 @@ def new_file_path(photo_date):
 
 
 # Testing
-# print(new_file_path([22, 8, 2019]))
+print(new_file_path([22, 8, 2019]))
+
+
+def initialize_folders(raw_exif_data):
+    """
+    Will create all the folders in the current directory
+    :param raw_exif_data: the raw exif data for all the photos.
+    :return: validation that all the folders were created
+    """
+    folders = []
+    for photo in raw_exif_data:
+        photo_folder = photo["New Path"]
+        if photo_folder in folders:
+            folders.append(photo_folder)
+    for folder_path in folders:
+        command = "mkdir -p " + folder_path
+        command_ran = os.system(command)
+        if command_ran == 0:
+            print("Created folder", folder_path)
+        elif command_ran != 0:
+            error_str = "Can't create the folder " + folder_path
+            raise Exception(error_str)
+    lsdir = os.listdir()
+    if len(lsdir) != len(folders):
+        raise Exception("Not all folders were created")
+    return True
+
+
+# Testing:
+# initialize_folders(PF.photo_exif_data(PF.list_image_paths(pre_import_file_types())))
