@@ -27,7 +27,7 @@ def list_image_paths(file_types):
 
 # Testing
 # Please import FMF before running the command below:
-# list_image_paths(FMF.pre_import_file_types())
+# print(list_image_paths(FMF.pre_import_file_types()))
 
 
 def photo_exif_data(photo_paths):
@@ -64,4 +64,4 @@ def photo_exif_data(photo_paths):
 
 
 # Testing
-# print(photo_exif_data(list_image_paths(FMF.pre_import_file_types())))
+print(photo_exif_data(list_image_paths(FMF.pre_import_file_types())))
