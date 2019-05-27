@@ -3,7 +3,7 @@
 [![HitCount](http://hits.dwyl.io/Matt-Gleich/Photo-Merge.svg)](http://hits.dwyl.io/Matt-Gleich/Photo-Merge)
 
 # Photo-Merge
-📷 Photo migration and management system
+📷 Photo sorting application
 
 Will sort and organize all the photos on a certain drive. Check to make sure that you photos; file types are supported in the `supported_file_types.json` file.
 
