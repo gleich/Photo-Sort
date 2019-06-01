@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/Matt-Gleich/Photo-Sort.svg?branch=master)](https://travis-ci.org/Matt-Gleich/Photo-Sort)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1856b1ae8bb44b4b87a01f420109d5ae)](https://www.codacy.com/app/matthewgleich/Photo-Merge?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Matt-Gleich/Photo-Merge&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1856b1ae8bb44b4b87a01f420109d5ae)](https://www.codacy.com/app/matthewgleich/Photo-Sort?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Matt-Gleich/Photo-Merge&amp;utm_campaign=Badge_Grade)
 [![HitCount](http://hits.dwyl.io/Matt-Gleich/Photo-Merge.svg)](http://hits.dwyl.io/Matt-Gleich/Photo-Merge)
 
 # Photo-Merge
