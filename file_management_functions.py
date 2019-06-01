@@ -73,7 +73,7 @@ def new_file_path(photo_date):
             new_day = str(day) + "rd"
         else:
             new_day = str(day) + "th"
-        final_string = str(year) + "/" + str(month) + "/" + str(month) + "-" + str(new_day)
+        final_string = "./" + str(year) + "/" + str(month) + "/" + str(month) + "-" + str(new_day)
         return final_string
 
 
