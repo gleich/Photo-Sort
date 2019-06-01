@@ -38,26 +38,8 @@ def photo_exif_data(photo_paths):
     """
     dictionaries = []
     for file in photo_paths:
-        command_to_run = UF.run_command(["exiftool", file], True)
-        ran_command = UF.get_subprocess_output(command_to_run)
-        raw_elements = ran_command.split("\\n")
-        elements = []
-        for element in raw_elements:
-            parts = element.split(":", 1)
-            for part in parts:
-                stripped_part = part.strip()
-                elements.append(stripped_part)
-        elements.pop(-1)
-        raw_dict = UF.list_to_dict(elements)
         dictionary_elements = {}
-        image_size_sum = 0
-        for string in raw_dict["Image Size"].split("x"):
-            number_form = int(string)
-            image_size_sum += number_form
         dictionary_elements["Photo Path"] = file
-        dictionary_elements["File Type"] = raw_dict["File Type"]
-        dictionary_elements["Image Size"] = raw_dict["Image Size"]
-        dictionary_elements["Image Size Sum"] = image_size_sum
         dictionary_elements["New Path"] = FMF.new_file_path(UF.file_creation_date(file))
         dictionary_elements["Creation Date"] = UF.file_creation_date(file)
         dictionaries.append(dictionary_elements)
@@ -65,4 +47,3 @@ def photo_exif_data(photo_paths):
 
 
 # Testing
-# print(photo_exif_data(list_image_paths(FMF.pre_import_file_types())))
