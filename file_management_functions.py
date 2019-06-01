@@ -63,8 +63,8 @@ def new_file_path(photo_date):
     """
     if len(photo_date) == 3:
         month = photo_date[0]
-        day = photo_date[1]
-        year = photo_date[2]
+        day = int(photo_date[1])
+        year = int(photo_date[2])
         if day in (1, 21, 31):
             new_day = str(day) + "st"
         elif day in (2, 22):
