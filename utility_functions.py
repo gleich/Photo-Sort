@@ -45,19 +45,47 @@ def run_command(shell_command, get_output):
 
 def file_creation_date(file_path):
     """
-    Finds when the photo was created. This is needed because it is not something that we get when using the exiftool.
-    :param file_path:  The path of the file that the date will be gotton for.
+    Finds when the photo was created.
+    :param file_path:  The path of the file that the date will be gotten for.
     :return: string that says what the date of creation is for the file using the ISO format.
     """
     ran_command = run_command(["stat", "-f", "%SB", file_path], True)
-    raw_command_output = get_subprocess_output(ran_command)
-    command_output = raw_command_output.strip("\\n")
+    command_output = get_subprocess_output(ran_command).strip("\\n")
     elements = command_output.split(" ")
-    month_string = elements[0]
-    month_number = 0
-    day_number = int(elements[1])
-    year_number = int(elements[3])
-    return [month_number, day_number, year_number]
+    if len(elements) == 4:
+        month = elements[0]
+        day = elements[1]
+        year = elements[3]
+    elif len(elements) == 5:
+        month = elements[0]
+        day = elements[2]
+        year = elements[4]
+    if month in "January":
+        month = "January"
+    elif month in "February":
+        month = "February"
+    elif month in "March":
+        month = "March"
+    elif month in "April":
+        month = "April"
+    elif month in "May":
+        month = "May"
+    elif month in "June":
+        month = "June"
+    elif month in "July":
+        month = "July"
+    elif month in "August":
+        month = "August"
+    elif month in "September":
+        month = "September"
+    elif month in "October":
+        month = "October"
+    elif month in "November":
+        month = "November"
+    elif month in "December":
+        month = "December"
+    return [month, day, year]
+
 
 
 # Testing:
