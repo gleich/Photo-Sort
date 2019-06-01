@@ -45,16 +45,21 @@ def run_command(shell_command, get_output):
 
 def file_creation_date(file_path):
     """
-    Finds when the photo was created. This is needed because it is not something that we get when using the exiftool.
+    Finds when the photo was created.
     :param file_path:  The path of the file that the date will be gotten for.
     :return: string that says what the date of creation is for the file using the ISO format.
     """
     ran_command = run_command(["stat", "-f", "%SB", file_path], True)
     command_output = get_subprocess_output(ran_command).strip("\\n")
     elements = command_output.split(" ")
-    month = elements[0]
-    day = int(elements[1])
-    year = int(elements[3])
+    if len(elements) == 4:
+        month = elements[0]
+        day = elements[1]
+        year = elements[3]
+    elif len(elements) == 5:
+        month = elements[0]
+        day = elements[2]
+        year = elements[4]
     return [month, day, year]
 
 
