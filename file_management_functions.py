@@ -85,7 +85,6 @@ def init_folders(raw_exif_data):
     """
     Will create all the folders in the current directory
     :param raw_exif_data: the raw exif data for all the photos.
-    :return: validation that all the folders were created
     """
     folders = []
     for photo in raw_exif_data:
