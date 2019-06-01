@@ -85,6 +85,7 @@ def init_folders(raw_exif_data):
     """
     Will create all the folders in the current directory
     :param raw_exif_data: the raw exif data for all the photos.
+    :return: folders that were created
     """
     folders = []
     for photo in raw_exif_data:
@@ -93,4 +94,6 @@ def init_folders(raw_exif_data):
             folders.append(photo_folder)
     for folder_path in folders:
         UF.run_command(["mkdir", "-p", folder_path], False)
+    UF.run_command(["mkdir", "Duplicates"], False)
+    return folders
 
