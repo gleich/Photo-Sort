@@ -93,17 +93,8 @@ def initialize_folders(raw_exif_data):
         if photo_folder in folders:
             folders.append(photo_folder)
     for folder_path in folders:
-        command = "mkdir -p " + folder_path
-        command_ran = os.system(command)
-        if command_ran == 0:
-            print("Created folder", folder_path)
-        elif command_ran != 0:
-            error_str = "Can't create the folder " + folder_path
-            raise Exception(error_str)
-    lsdir = os.listdir()
-    if len(lsdir) != len(folders):
-        raise Exception("Not all folders were created")
-    return True
+        UF.run_command(["mkdir", "-p", folder_path])
+
 
 
 # Testing:
