@@ -97,3 +97,15 @@ def init_folders(raw_exif_data):
     UF.run_command(["mkdir", "Duplicates"], False)
     return folders
 
+
+
+def put_photos_in_folders(raw_exif_data):
+    """
+    Will take all the photos and put them in their folders
+    :param raw_exif_data: the raw exif data
+    :return: None
+    """
+
+
+
+
