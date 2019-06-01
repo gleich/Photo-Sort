@@ -60,6 +60,30 @@ def file_creation_date(file_path):
         month = elements[0]
         day = elements[2]
         year = elements[4]
+    if month in "January":
+        month = "January"
+    elif month in "February":
+        month = "February"
+    elif month in "March":
+        month = "March"
+    elif month in "April":
+        month = "April"
+    elif month in "May":
+        month = "May"
+    elif month in "June":
+        month = "June"
+    elif month in "July":
+        month = "July"
+    elif month in "August":
+        month = "August"
+    elif month in "September":
+        month = "September"
+    elif month in "October":
+        month = "October"
+    elif month in "November":
+        month = "November"
+    elif month in "December":
+        month = "December"
     return [month, day, year]
 
 
