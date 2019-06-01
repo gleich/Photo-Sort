@@ -1,14 +1,17 @@
-import photo_functions
-import file_management_functions
+import photo_functions as PF
+import file_management_functions as FMF
 
 
 def main():
     """
     Runs main
     """
-    types = file_management_functions.pre_import_file_types()
-    file_management_functions.cd_into_drive()
-    print(photo_functions.list_image_paths(types))
+    file_types = FMF.pre_import_file_types()
+    FMF.cd_into_drive()
+    image_paths = PF.list_image_paths(file_types)
+    exif_data = PF.photo_exif_data(image_paths)
+    print(exif_data)
+    FMF.initialize_folders(exif_data)
 
 
 main()
