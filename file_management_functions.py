@@ -81,7 +81,7 @@ def new_file_path(photo_date):
 # print(new_file_path(["August",  22, 2019]))
 
 
-def initialize_folders(raw_exif_data):
+def init_folders(raw_exif_data):
     """
     Will create all the folders in the current directory
     :param raw_exif_data: the raw exif data for all the photos.
