@@ -90,12 +90,8 @@ def initialize_folders(raw_exif_data):
     folders = []
     for photo in raw_exif_data:
         photo_folder = photo["New Path"]
-        if photo_folder in folders:
+        if photo_folder not in folders:
             folders.append(photo_folder)
     for folder_path in folders:
-        UF.run_command(["mkdir", "-p", folder_path])
+        UF.run_command(["mkdir", "-p", folder_path], False)
 
-
-
-# Testing:
-# initialize_folders(PF.photo_exif_data(PF.list_image_paths(pre_import_file_types())))
