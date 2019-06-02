@@ -103,8 +103,30 @@ def put_photos_in_folders(raw_exif_data):
     """
     Will take all the photos and put them in their folders
     :param raw_exif_data: the raw exif data
-    :return: None
+    :return: number of duplicates in put in folder
     """
+    move_files = {}
+    duplicate_files = []  # list of their current paths
+    duplicate_amount = len(duplicate_files)
+    for file in raw_exif_data:
+        file_name = file["File Name"]
+        current_path = file["Current Path"]
+        new_path = file["New Path"]
+        if file_name not in move_files.keys():
+            move_files[file_name] = [current_path, new_path]
+        else:
+            duplicate_files.append(current_path)
+            other_file = move_files[file_name][0]
+            move_files.pop(file_name)
+            duplicate_files.append(other_file)
+    for name, paths in move_files.items():
+        current_path = paths[0]
+        new_path = paths[1]
+        UF.run_command(["mv", current_path, new_path], False)
+    if len(duplicate_files) >= 2:
+        for path in duplicate_files:
+            UF.run_command(["mv", path, "./Duplicates"], False)
+    return duplicate_amount
 
 
 
