@@ -39,8 +39,8 @@ def photo_exif_data(photo_paths):
     dictionaries = []
     for file in photo_paths:
         dictionary_elements = {}
-        dictionary_elements["Photo Path"] = file
-        dictionary_elements["New Path"] = FMF.new_file_path(UF.file_creation_date(file))
+        dictionary_elements["Current Path"] = file
+        dictionary_elements["File Name"] = UF.get_subprocess_output(UF.run_command(["basename", file], True)).strip("\\n")
         dictionary_elements["Creation Date"] = UF.file_creation_date(file)
         dictionaries.append(dictionary_elements)
     return dictionaries
