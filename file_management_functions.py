@@ -112,11 +112,12 @@ def put_photos_in_folders(raw_exif_data):
         file_name = file["File Name"]
         current_path = file["Current Path"]
         new_path = file["New Path"]
-        if file_name not in move_files.keys():
+        if file_name  in move_files.keys():
             move_files[file_name] = [current_path, new_path]
-        else:
+        elif file_name not in move_files.keys():
             duplicate_files.append(current_path)
             other_file = move_files[file_name][0]
+            print(file_name)
             move_files.pop(file_name)
             duplicate_files.append(other_file)
     for name, paths in move_files.items():
@@ -126,6 +127,8 @@ def put_photos_in_folders(raw_exif_data):
     if len(duplicate_files) >= 2:
         for path in duplicate_files:
             UF.run_command(["mv", path, "./Duplicates"], False)
+    print(move_files)
+    print(duplicate_files)
     return duplicate_amount
 
 
