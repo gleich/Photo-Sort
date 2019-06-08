@@ -85,7 +85,7 @@ def init_folders(raw_exif_data):
     """
     Will create all the folders in the current directory
     :param raw_exif_data: the raw exif data for all the photos.
-    :return: validation that all the folders were created
+    :return: folders that were created
     """
     folders = []
     for photo in raw_exif_data:
@@ -94,4 +94,62 @@ def init_folders(raw_exif_data):
             folders.append(photo_folder)
     for folder_path in folders:
         UF.run_command(["mkdir", "-p", folder_path], False)
+    UF.run_command(["mkdir", "Duplicates"], False)
+    return folders
 
+
+def rename_file(file_path):
+    """
+    Will create the string to rename a file to ./currentname_copy.file extension
+    :param file_path: the current file path
+    :return: new path
+    """
+    characters = list(file_path)
+    dot_index = ''.join(characters).rindex('.')
+    last_slash_index = ''.join(characters).rindex('/')
+    name_section = characters[last_slash_index:dot_index]
+    current_name = "".join(name_section)
+    new_name = current_name + "_COPY"
+    before_name = "".join(characters[0:last_slash_index])
+    after_name = "".join(characters[dot_index:len(characters)])
+    new_path = before_name + new_name + after_name
+    return new_path
+
+
+# Testing:
+# print(rename_file("/Users/matthewgleich/Documents/GitHub/Get_Tempature/.idea/Get_Tempature.iml"))
+
+
+
+
+
+def put_photos_in_folders(raw_exif_data):
+    """
+    Will take all the photos and put them in their folders
+    :param raw_exif_data: the raw exif data
+    :return: number of duplicates in put in folder
+    """
+    move_files = {}
+    duplicate_files = []  # list of their current paths
+    duplicate_amount = len(duplicate_files)
+    for file in raw_exif_data:
+        file_name = file["File Name"]
+        current_path = file["Current Path"]
+        new_path = file["New Path"]
+        if file_name not in move_files.keys():
+            move_files[file_name] = [current_path, new_path]
+        elif file_name in move_files.keys():
+            duplicate_files.append(current_path)
+            duplicate_file_orig = move_files[file_name][0]
+            duplicate_file_new_path = rename_file(duplicate_file_orig)
+            UF.run_command(["mv", duplicate_file_orig, duplicate_file_new_path], False)
+            move_files.pop(file_name)
+            duplicate_files.append(duplicate_file_new_path)
+    for name, paths in move_files.items():
+        current_path = paths[0]
+        new_path = paths[1]
+        UF.run_command(["mv", current_path, new_path], False)
+    if len(duplicate_files) >= 2:
+        for path in duplicate_files:
+            UF.run_command(["mv", path, "./Duplicates"], False)
+    return duplicate_amount
