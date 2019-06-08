@@ -149,7 +149,3 @@ def put_photos_in_folders(raw_exif_data):
     print(move_files)
     print(duplicate_files)
     return duplicate_amount
-
-
-
-
