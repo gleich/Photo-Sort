@@ -135,5 +135,5 @@ def print_list_index(iterable_item):
             print(iterable_item[i], ":", i)
 
 
-Testing:
+# Testing:
 print_list_index('./photos/test_image.jpg')
