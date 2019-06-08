@@ -98,7 +98,26 @@ def init_folders(raw_exif_data):
     return folders
 
 
+def rename_file(file_path):
+    """
+    Will create the string to rename a file to ./currentname_copy.file extension
+    :param file_path: the current file path
+    :return: new path
+    """
+    characters = list(file_path)
+    dot_index = ''.join(characters).rindex('.')
+    last_slash_index = ''.join(characters).rindex('/')
+    name_section = characters[last_slash_index:dot_index]
+    current_name = "".join(name_section)
+    new_name = current_name + "_COPY"
+    before_name = "".join(characters[0:last_slash_index])
+    after_name = "".join(characters[dot_index:len(characters)])
+    new_path = before_name + new_name + after_name
+    return new_path
 
+
+# Testing:
+# print(rename_file("/Users/matthewgleich/Documents/GitHub/Get_Tempature/.idea/Get_Tempature.iml"))
 def put_photos_in_folders(raw_exif_data):
     """
     Will take all the photos and put them in their folders
