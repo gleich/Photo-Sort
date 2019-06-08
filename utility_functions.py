@@ -119,7 +119,7 @@ def list_to_dict(lst):
 # print(list_to_dict(["a", "b", "c", "d"]))
 
 
-This files is not gonna be unit-tested, this is due to the fact that there is no returned items.
+# This files is not gonna be unit-tested, this is due to the fact that there is no returned items.
 def print_list_index(iterable_item):
     """
     Will list the indexes of all the items in a list. This is for testing.
