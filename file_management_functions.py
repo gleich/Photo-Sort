@@ -4,37 +4,81 @@ import json
 import utility_functions as UF
 
 
-def cd_into_drive():
+def cd_location():
     """
-    Will change the current directory into the directory of the drive that will be used.
+    Will change the current directory into the directory where the files that will be sorted are.
     """
     project_location = os.getcwd()
     directory_layers = len(project_location.split("/"))
+    drive_or_folder = input("Are the files that you are trying to sort in a folder, external drive, or external drive and folder?\n")
     command_parts = ["../"]
-    for i in range(directory_layers):
-        command_parts.append("../")
-    path = "".join(command_parts)
-    os.chdir(path)
-    if "Volumes" in os.listdir():
-        while True:
+    if "drive" in drive_or_folder:
+        for i in range(directory_layers):
+            command_parts.append("../")
+        path = "".join(command_parts)
+        os.chdir(path)
+        if "Volumes" in os.listdir():
             os.chdir("Volumes")
-            print("-------------------------------------------------------")
-            drive_numbers = 0
-            for drive in os.listdir():
-                drive_numbers += 1
-                print("Drive {drive_nums}: {item}".format(drive_nums=drive_numbers, item=drive))
-            print("")
-            drive_name = input("What is the drive that you wanna use?\n")
-            if drive_name in os.listdir():
-                os.chdir(drive_name)
-                print("The program is now set to this drive:", os.getcwd())
+            while True:
+                print("-------------------------------------------------------")
+                drive_numbers = 0
+                for drive in os.listdir():
+                    drive_numbers += 1
+                    print("Drive {drive_nums}: {item}".format(drive_nums=drive_numbers, item=drive))
+                print("")
+                drive_name = input("What is the drive that you wanna use?\n")
+                if drive_name in os.listdir():
+                    os.chdir(drive_name)
+                    print("The program is now set to this drive:", os.getcwd())
+                    break
+                else:
+                    print("That is not a valid drive. The program will restart in 5 seconds")
+                    time.sleep(5)
+                    continue
+            if "folder" in drive_or_folder:
+                while True:
+                    directories_list_command = UF.get_subprocess_output(UF.run_command(["ls", "-d" "*/"], True))
+                    items_raw = directories_list_command.split("/")
+                    items = []
+                    for directory in items_raw:
+                        cleaned = directory.strip()
+                        items.append(cleaned)
+                    list_string = "    ".join(items)
+                    UF.clear_output()
+                    print("Below is a list of all the folders on the current drive:\n", list_string, "\n")
+                    folder = input("What is the folder do you wanna use? If the current folder the folder that you wanna use, then just type *\n")
+                    if "*" in folder:
+                        break
+                    else:
+                        os.chdir(folder)
+                        continue
+        else:
+            raise Exception("Can't locate any drives")
+    elif "folder" in drive_or_folder:
+        command_parts = ["../"]
+        for i in range(directory_layers - 2):
+            command_parts.append("../")
+        path = "".join(command_parts)
+        os.chdir(path)
+        print(os.getcwd())
+        while True:
+            directories_list_command = UF.get_subprocess_output(UF.run_command(["ls", "-d" "*/"], True))
+            items_raw = directories_list_command.split("/")
+            items = []
+            for directory in items_raw:
+                cleaned = directory.strip()
+                items.append(cleaned)
+            list_string = "    ".join(items)
+            UF.clear_output()
+            print("Below is a list of all the folders:\n", list_string, "\n")
+            folder = input(
+                "What is the folder do you wanna use? If the current folder the folder that you wanna use, then just type *\n")
+            if "*" in folder:
                 break
             else:
-                print("That is not a valid drive. The program will restart in 5 seconds")
-                time.sleep(5)
+                os.chdir(folder)
                 continue
-    else:
-        raise Exception("Can't locate any drives")
+
 
 
 # Testing:
