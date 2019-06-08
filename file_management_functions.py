@@ -118,6 +118,11 @@ def rename_file(file_path):
 
 # Testing:
 # print(rename_file("/Users/matthewgleich/Documents/GitHub/Get_Tempature/.idea/Get_Tempature.iml"))
+
+
+
+
+
 def put_photos_in_folders(raw_exif_data):
     """
     Will take all the photos and put them in their folders
@@ -131,14 +136,15 @@ def put_photos_in_folders(raw_exif_data):
         file_name = file["File Name"]
         current_path = file["Current Path"]
         new_path = file["New Path"]
-        if file_name  in move_files.keys():
+        if file_name not in move_files.keys():
             move_files[file_name] = [current_path, new_path]
-        elif file_name not in move_files.keys():
+        elif file_name in move_files.keys():
             duplicate_files.append(current_path)
-            other_file = move_files[file_name][0]
-            print(file_name)
+            duplicate_file_orig = move_files[file_name][0]
+            duplicate_file_new_path = rename_file(duplicate_file_orig)
+            UF.run_command(["mv", duplicate_file_orig, duplicate_file_new_path], False)
             move_files.pop(file_name)
-            duplicate_files.append(other_file)
+            duplicate_files.append(duplicate_file_new_path)
     for name, paths in move_files.items():
         current_path = paths[0]
         new_path = paths[1]
@@ -146,6 +152,4 @@ def put_photos_in_folders(raw_exif_data):
     if len(duplicate_files) >= 2:
         for path in duplicate_files:
             UF.run_command(["mv", path, "./Duplicates"], False)
-    print(move_files)
-    print(duplicate_files)
     return duplicate_amount
