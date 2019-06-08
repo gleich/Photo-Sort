@@ -117,3 +117,12 @@ def list_to_dict(lst):
 
 # Testing
 # print(list_to_dict(["a", "b", "c", "d"]))
+
+
+def clear_output():
+    """
+    Will clear the output screen
+    :return: none
+    """
+    for i in range(100):
+        print("\n")
