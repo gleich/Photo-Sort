@@ -147,7 +147,7 @@ def put_photos_in_folders(raw_exif_data):
     if len(duplicate_files) >= 2:
         for path in duplicate_files:
             UF.run_command(["mv", path, "./Duplicates"], False)
-    return duplicate_amount
+    return int(len(duplicate_files) / 2)
 
 
 def cd_into_folder(go_to_root):
