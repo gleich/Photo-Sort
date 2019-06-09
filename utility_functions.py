@@ -1,4 +1,5 @@
 import subprocess
+from termcolor import colored
 
 
 #######################
@@ -126,3 +127,15 @@ def clear_output():
     """
     output = get_subprocess_output(run_command(["clear"], True))
     print(output)
+
+
+
+def print_colored(string, color):
+    """
+    Will print to the terminal a string in a certain color
+    :param string: string that will be printed
+    :param color: color that the string will be printed as
+    :return: none
+    """
+    print_text = colored(string, color, attrs=['bold'])
+    print(print_text)
