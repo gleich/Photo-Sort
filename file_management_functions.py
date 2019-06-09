@@ -6,18 +6,19 @@ import utility_functions as UF
 
 def cd_into_drive():
     """
-    Will change the current directory into the directory of the drive that will be used.
+    Will change the current directory into the directory where the files that will be sorted are.
     """
     project_location = os.getcwd()
     directory_layers = len(project_location.split("/"))
     command_parts = ["../"]
     for i in range(directory_layers):
-        command_parts.append("../")
+         command_parts.append("../")
     path = "".join(command_parts)
     os.chdir(path)
     if "Volumes" in os.listdir():
+        os.chdir("Volumes")
         while True:
-            os.chdir("Volumes")
+            UF.clear_output(50)
             print("-------------------------------------------------------")
             drive_numbers = 0
             for drive in os.listdir():
@@ -27,14 +28,12 @@ def cd_into_drive():
             drive_name = input("What is the drive that you wanna use?\n")
             if drive_name in os.listdir():
                 os.chdir(drive_name)
-                print("The program is now set to this drive:", os.getcwd())
+                UF.print_colored("The program is now set to this drive:" + str(os.getcwd()), "green")
                 break
             else:
-                print("That is not a valid drive. The program will restart in 5 seconds")
+                UF.print_colored("That is not a valid drive. The program will restart in 5 seconds", "red")
                 time.sleep(5)
                 continue
-    else:
-        raise Exception("Can't locate any drives")
 
 
 # Testing:
@@ -120,9 +119,6 @@ def rename_file(file_path):
 # print(rename_file("/Users/matthewgleich/Documents/GitHub/Get_Tempature/.idea/Get_Tempature.iml"))
 
 
-
-
-
 def put_photos_in_folders(raw_exif_data):
     """
     Will take all the photos and put them in their folders
@@ -131,7 +127,6 @@ def put_photos_in_folders(raw_exif_data):
     """
     move_files = {}
     duplicate_files = []  # list of their current paths
-    duplicate_amount = len(duplicate_files)
     for file in raw_exif_data:
         file_name = file["File Name"]
         current_path = file["Current Path"]
@@ -152,4 +147,43 @@ def put_photos_in_folders(raw_exif_data):
     if len(duplicate_files) >= 2:
         for path in duplicate_files:
             UF.run_command(["mv", path, "./Duplicates"], False)
-    return duplicate_amount
+    return int(len(duplicate_files) / 2)
+
+
+def cd_into_folder(go_to_root):
+    """
+    Will list the folders in the current directory and cd into the one that user chooses.
+    :param go_to_root: If the program should cd up to the root (boolean)
+    :return: current directory
+    """
+    if go_to_root:
+        current_pwd = os.getcwd()
+        levels = current_pwd.split("/")
+        levels.pop(0)  # Removes blank space that is right before users.
+        number_of_levels = len(levels) - 2  # Minus 2 because we wanna be a user root not system root.
+        for i in range(number_of_levels):
+            os.chdir("..")
+    while True:
+        UF.clear_output(50)
+        command_output = os.popen("echo */").read()  # Won't work with subprocess for some strange reason
+        raw_directories = command_output.split("/")
+        directories = []
+        current_directory = os.getcwd()
+        print("The current path is:", current_directory)
+        for directory in raw_directories:
+            cleaned_directory = directory.strip()
+            directories.append(cleaned_directory)
+        for directory in directories:
+            print(directory)
+        folder = input("Please choose one of the folders above. If the current folder is the folder that you wanna sort, the please type *\n")
+        if folder in directories:
+            os.chdir(folder)
+            continue
+        elif folder == "*":
+            UF.print_colored("The folder the program will run in is now set to" + folder, "green")
+            break
+        else:
+            print("That is not one of the folders shown above.")
+            continue
+    UF.clear_output(10)
+    return os.getcwd()

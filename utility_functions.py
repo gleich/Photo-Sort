@@ -1,4 +1,5 @@
 import subprocess
+from termcolor import colored
 
 
 #######################
@@ -117,3 +118,27 @@ def list_to_dict(lst):
 
 # Testing
 # print(list_to_dict(["a", "b", "c", "d"]))
+
+
+def clear_output(line_number):
+    """
+    Will clear the output screen
+    :param line_number: number of blank lines that will be printed
+    :return: none
+    """
+    fix_line_number = line_number / 2
+    rounded_line_number = round(fix_line_number)
+    for i in range(rounded_line_number):
+        print('\n')
+
+
+
+def print_colored(string, color):
+    """
+    Will print to the terminal a string in a certain color
+    :param string: string that will be printed
+    :param color: color that the string will be printed as
+    :return: none
+    """
+    print_text = colored(string, color, attrs=['bold'])
+    print(print_text)
