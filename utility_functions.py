@@ -120,12 +120,15 @@ def list_to_dict(lst):
 # print(list_to_dict(["a", "b", "c", "d"]))
 
 
-def clear_output():
+def clear_output(line_number):
     """
     Will clear the output screen
+    :param line_number: number of blank lines that will be printed
     :return: none
     """
-    for i in range(50):
+    fix_line_number = line_number / 2
+    rounded_line_number = round(fix_line_number)
+    for i in range(rounded_line_number):
         print('\n')
 
 
