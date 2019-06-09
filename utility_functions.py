@@ -124,5 +124,5 @@ def clear_output():
     Will clear the output screen
     :return: none
     """
-    for i in range(100):
-        print("\n")
+    output = get_subprocess_output(run_command(["clear"], True))
+    print(output)
