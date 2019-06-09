@@ -127,7 +127,6 @@ def put_photos_in_folders(raw_exif_data):
     """
     move_files = {}
     duplicate_files = []  # list of their current paths
-    duplicate_amount = len(duplicate_files)
     for file in raw_exif_data:
         file_name = file["File Name"]
         current_path = file["Current Path"]
