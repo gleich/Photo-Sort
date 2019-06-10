@@ -176,7 +176,10 @@ def cd_into_folder(go_to_root):
         for directory in directories:
             print(directory)
         folder = input("Please choose one of the folders above. If the current folder is the folder that you wanna sort, the please type *\n")
-        if folder in directories:
+        if folder == "*":
+            UF.print_colored("The folder the program will run in is now set to" + folder, "green")
+            break
+        elif folder in directories:
             os.chdir(folder)
             continue
         elif folder == "*":
