@@ -3,19 +3,13 @@ import file_management_functions as FMF
 import utility_functions as UF
 from termcolor import colored
 import setup
-import json
 
 
 def main():
     """
     Runs main
     """
-    with open("settings.json") as settings_json:
-        settings = json.load(settings_json)
-        if len(settings) == 0:
-            setup.update_settings()
-        else:
-            setup.init_settings()
+    setup.update_settings()
     file_types = FMF.pre_import_file_types()
     print()
     UF.clear_output(50)
