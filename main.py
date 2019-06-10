@@ -2,12 +2,14 @@ import photo_functions as PF
 import file_management_functions as FMF
 import utility_functions as UF
 from termcolor import colored
+import setup
 
 
 def main():
     """
     Runs main
     """
+    setup.update_settings()
     file_types = FMF.pre_import_file_types()
     print()
     UF.clear_output(50)
