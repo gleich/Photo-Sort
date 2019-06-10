@@ -1,29 +1,27 @@
-import json
 from platform import platform
 import datetime
 
-def init_settings():
+def update_settings():
     """
-    Will initialize the setting for a user
+    Will write the settings for a user
     :return: none
     """
     current_os = platform()
-    if "windows" in current_os.lower() or "linux" in current_os.lower():
-        raise "Can't "
-
     current_time = datetime.datetime.now()
-    dict_to_load = {"Operating System": current_os,
-                    "Ran Before:": False,
-                    "Run Times:": 0,
-                    "Last run:": current_time
-                    }
-    with open("settings.json", "w") as settings_json:
-        json.dump(dict_to_load, settings_json)
+    if "windows" in current_os.lower() or "linux" in current_os.lower():
+        raise Exception("This program is not supported for your Operating System.")
+    with open("settings.txt", "w") as settings_file:
+        settings_file.write("Operating system: " + current_os)
+        settings_file.write("Ran before: " + str(True))
+        settings_file.write("Last Run Time: " + str(current_time))
 
 
-def update_settings():
+def setup_requirements():
     """
-    Will update the user's settings
-    :return: none
+    Will install and setup decencies
+    :return:
     """
+
+
+
 
