@@ -2,14 +2,16 @@ import photo_functions as PF
 import file_management_functions as FMF
 import utility_functions as UF
 from termcolor import colored
-import setup
+from platform import platform
 
 
 def main():
     """
     Runs main
     """
-    setup.update_settings()
+    current_platform = platform()
+    if "windows" in current_platform.lower() or "linux" in current_platform.lower():
+        raise Exception("This program doesn't support Linux or Windows. It will not be able to run.")
     file_types = FMF.pre_import_file_types()
     print()
     UF.clear_output(50)
