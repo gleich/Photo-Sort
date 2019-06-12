@@ -1,0 +1,11 @@
+Photo Merger
+© Matthew Gleich 2019
+V1.0
+---
+Please read the following information before continuing with the software.
+
+1. If at any time you would like to stop the program, type control+z.
+2. Once the photos are moved to the new folders, they can't be moved back using this program. You will need to go into each folder and move them back by hand. I realize that this might be a issue for some people so I am working on including this in future versions.
+3. Before running the program, make sure that all file types (.jpeg is an example) that you are looking to move are listed in the supported_file_types.json file.
+4. If there are two files that have the same file name, then they will be moved into the duplicates folder. One will be named the original and the other will be named the original + _COPY. When you are done sorting through all the photos, you will need to put each of the photos in the folders one by one. I realize that is a pain in the ass so I am gonna work on having it move them for you with a command.
+5. If you find a bug with this program, please go to https://github.com/Matt-Gleich/Photo-Sort/issues/new and report your issue there.
