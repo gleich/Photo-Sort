@@ -142,3 +142,17 @@ def print_colored(string, color):
     """
     print_text = colored(string, color, attrs=['bold'])
     print(print_text)
+
+
+
+def print_txt_content(file_name):
+    """
+    Will print the contents of a text file to the console.
+    :param file_name: The name of the text file.
+    :return: none
+    """
+    with open(file_name) as file:
+        contents = file.read()
+        lines = contents.split("\n")
+        for line in lines:
+            print(line)
