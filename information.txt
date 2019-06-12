@@ -9,3 +9,4 @@ Please read the following information before continuing with the software.
 3. Before running the program, make sure that all file types (.jpeg is an example) that you are looking to move are listed in the supported_file_types.json file.
 4. If there are two files that have the same file name, then they will be moved into the duplicates folder. One will be named the original and the other will be named the original + _COPY. When you are done sorting through all the photos, you will need to put each of the photos in the folders one by one. I realize that is a pain in the ass so I am gonna work on having it move them for you with a command.
 5. If you find a bug with this program, please go to https://github.com/Matt-Gleich/Photo-Sort/issues/new and report your issue there.
+6. When you select the folder, keep in mind that this will look at all the subfolders and move them too. I am working on adding an option to only do the current folder.
