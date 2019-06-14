@@ -20,7 +20,8 @@ Before running the program for the first time, you need to install the one piece
 
 ## Usage:
 Once you have installed the requirements, you can now run the program! You run the program by inputing the following command once you are in the folder:
-1. `python main.py`
+
+`python main.py`
 
 ## Bugs
 If you find a bug in my program, please report it to the issues page on GitHub
