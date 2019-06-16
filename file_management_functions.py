@@ -192,3 +192,18 @@ def cd_into_folder(go_to_root):
             continue
     UF.clear_output(10)
     return os.getcwd()
+
+
+def setup_duplicates_folder():
+    """
+    Will setup the duplicates folder. It needs to already exist though.
+    :return: none
+    """
+    UF.run_command(["mkdir", "./Duplicates/Keep"], False)
+    UF.run_command(["mkdir", "./Duplicates/Remove"], False)
+    instructions = \
+    "In this folder are all the duplicate files. When looking through the files, and you find the one that you wanna keep, just drag it into the folder called Keep. For all the ones that you would like to discard of, put them a folder called Remove. Once you have at least one file in the Keep folder, you can restart the program and use the move duplicates command and it will move all the files in the Keep folder to their correct folders. You can repeat this process as many times as you like. Also, when you are putting the files in the keep folder, you don't need to remove the _COPY extension, the program will do that automattically when they get moved into their folders."
+    with open("./Duplicates/instructions.txt", "w") as instructions_file:
+        instructions_file.write(instructions)
+    UF.print_colored("Go into the Duplicates folder and read the instructions.txt file to know what to do with the duplicates.", "yellow")
+
