@@ -3,7 +3,6 @@ import file_management_functions as FMF
 import utility_functions as UF
 from termcolor import colored
 from platform import platform
-import json
 
 
 def main():
