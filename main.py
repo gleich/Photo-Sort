@@ -79,8 +79,11 @@ def main():
             continue_question = input("\n".join(question_parts))
             if "y" in continue_question.lower():
                 duplicate_amount = FMF.put_photos_in_folders(exif_data)
+                print("")
                 UF.print_colored("Found " + str(duplicate_amount) + " Duplicates", "green")
-                UF.print_colored("All the photos were moved into their folders", 'green')
+                if duplicate_amount != 0:
+                    UF.print_colored("All the photos were moved into their folders", 'green')
+                    FMF.setup_duplicates_folder()
             elif "n" in continue_question.lower():
                 UF.clear_output(10)
                 print(colored("The photos were not put in the folders.", 'yellow', attrs=['bold', 'blink']))
