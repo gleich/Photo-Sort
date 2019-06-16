@@ -11,8 +11,8 @@ def main():
     """
     UF.clear_output(50)
     UF.print_txt_content("information.txt")
-    print("\n")
-    continue_question = input("Do you understand the information above?\nAnswer with y or n\n")
+    print("\nDo you understand the information above?")
+    continue_question = input(colored("Answer with y or n\n", "yellow", attrs=['bold']))
     if "y" in continue_question.lower():
         current_platform = platform()
         if "windows" in current_platform.lower() or "linux" in current_platform.lower():
@@ -25,7 +25,7 @@ def main():
             command_number += 1
             print("{one}. {two}".format(one=command_number, two=command))
         print("")
-        command_to_use = input("Which of the commands shown above would you like to use?\n").lower()
+        command_to_use = input(colored("Which of the commands shown above would you like to use?\n", "yellow", attrs=['bold'])).lower()
         if "sort" in command_to_use and "folder" in command_to_use:
             file_types = FMF.pre_import_file_types()
             print()
