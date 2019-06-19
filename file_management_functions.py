@@ -97,22 +97,23 @@ def init_folders(raw_exif_data):
     return folders
 
 
-def rename_file(file_path):
+def rename_file(file_path, number):
     """
     Will create the string to rename a file to ./currentname_copy.file extension
     :param file_path: the current file path
-    :return: new path
+    :param number: the number that will be added to the end of _COPY
+    :return: new path, new_name
     """
     characters = list(file_path)
     dot_index = ''.join(characters).rindex('.')
     last_slash_index = ''.join(characters).rindex('/')
     name_section = characters[last_slash_index:dot_index]
     current_name = "".join(name_section)
-    new_name = current_name + "_COPY"
+    new_name = current_name + "_COPY" + str(number)
     before_name = "".join(characters[0:last_slash_index])
     after_name = "".join(characters[dot_index:len(characters)])
     new_path = before_name + new_name + after_name
-    return new_path
+    return [new_path, new_name]
 
 
 # Testing:
@@ -126,30 +127,47 @@ def put_photos_in_folders(raw_exif_data):
     :return: number of duplicates in put in folder
     """
     move_files = {}
-    duplicate_files = []  # list of their current paths
+    duplicate_file_paths = []  # list of their current paths
+    duplicate_file_names = []  # list of their current names
     for file in raw_exif_data:
         file_name = file["File Name"]
         current_path = file["Current Path"]
         new_path = file["New Path"]
-        if file_name not in move_files.keys():
+        if file_name in duplicate_file_names:
+            copies = 0
+            while True:
+                copies += 1
+                rename_file_command = rename_file(current_path, copies)
+                new_name = rename_file_command[1]
+                new_path = rename_file_command[0]
+                if new_name in duplicate_file_names:
+                    continue
+                else:
+                    duplicate_file_paths.append(new_path)
+                    duplicate_file_names.append(new_name)
+                    UF.run_command(["mv", current_path, new_path], False)
+                    break
+        elif file_name not in move_files.keys():
             move_files[file_name] = [current_path, new_path]
         elif file_name in move_files.keys():
-            duplicate_files.append(current_path)
-            duplicate_file_orig = move_files[file_name][0]
-            duplicate_file_new_path = rename_file(duplicate_file_orig)
-            UF.run_command(["mv", duplicate_file_orig, duplicate_file_new_path], False)
+            duplicate_file_paths.append(current_path)
+            duplicate_file_names.append(file_name)
+            duplicate_file_orig_path = move_files[file_name][0]
+            rename_file_command = rename_file(duplicate_file_orig_path, 0)
+            UF.run_command(["mv", duplicate_file_orig_path, rename_file_command[0]], False)
             move_files.pop(file_name)
-            duplicate_files.append(duplicate_file_new_path)
+            duplicate_file_paths.append(rename_file_command[0])
+            duplicate_file_names.append(rename_file_command[1])
     for name, paths in move_files.items():
         current_path = paths[0]
         new_path = paths[1]
         UF.run_command(["mv", current_path, new_path], False)
-    if len(duplicate_files) >= 2:
-        for path in duplicate_files:
+    if len(duplicate_file_paths) >= 2:
+        for path in duplicate_file_paths:
             UF.run_command(["mv", path, "./Duplicates"], False)
     else:
         UF.run_command(["rm", "-r", "Duplicates"], False)
-    return int(len(duplicate_files) / 2)
+    return int(len(duplicate_file_paths) / 2)
 
 
 def cd_into_folder(go_to_root):
@@ -206,4 +224,3 @@ def setup_duplicates_folder():
     with open("./Duplicates/instructions.txt", "w") as instructions_file:
         instructions_file.write(instructions)
     UF.print_colored("Go into the Duplicates folder and read the instructions.txt file to know what to do with the duplicates.", "yellow")
-
