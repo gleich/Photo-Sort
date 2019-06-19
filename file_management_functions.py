@@ -2,6 +2,7 @@ import os
 import time
 import json
 import utility_functions as UF
+import photo_functions as PF
 
 
 def cd_into_drive():
@@ -224,3 +225,63 @@ def setup_duplicates_folder():
     with open("./Duplicates/instructions.txt", "w") as instructions_file:
         instructions_file.write(instructions)
     UF.print_colored("Go into the Duplicates folder and read the instructions.txt file to know what to do with the duplicates.", "yellow")
+
+
+def duplicates_folder_management(keep):
+    """
+    Moves the files in the Keep folder and removes the the files in the Remove Folder
+    :param keep: either Remove or Keep (answer with boolean)
+    :return: none
+    """
+    while True:
+        if keep:
+            folder_name = "Keep"
+            orig_file_names = os.listdir("./Duplicates/" + folder_name)  # orig because it still has the _COPY extension.
+            if len(orig_file_names) == 0:
+                UF.print_colored(
+                    "There are no files in the " + folder_name + " folder. Once files are in there, please restart the program and run this command again.", "red")
+                break
+            file_paths = []
+            for file in orig_file_names:
+                if "_COPY" in file:
+                    characters = list(file)
+                    _copy_index = "".join(characters).rindex("_COPY")
+                    dot_index = "".join(characters).rindex(".")
+                    orig_name = "".join(characters[0:_copy_index])
+                    extension = "".join(characters[dot_index:len(characters)])
+                    _copy_removed_path = "./Duplicates" + folder_name + "/" + orig_name + extension
+                    if _copy_removed_path in file_paths:
+                        UF.print_colored("It seems as though two files have the same name in the KEEP folder. Both of the files are called " + _copy_removed_path, "red")
+                        break
+                    UF.run_command(["mv", file, _copy_removed_path], False)
+                    file_paths.append(_copy_removed_path)
+                else:
+                    path = "./Duplicates/" + folder_name + "/" + file
+                    if path in file_paths:
+                        UF.print_colored("It seems as though two file have the same name in the KEEP folder. Both of the files are called " + file, "red")
+                        break
+                    file_paths.append(path)
+            exif_data = PF.photo_exif_data(file_paths)
+            for file in exif_data:
+                new_path = file["New Path"]
+                current_path = file["Current Path"]
+                UF.run_command(["mv", current_path, new_path], False)
+            amount_of_Files = len(file_paths)
+            UF.print_colored("Moved " + str(amount_of_Files) + " to they're correct spots in the folders", "green")
+            break
+        else:
+            folder_name = "Remove"
+            orig_file_names = os.listdir("./Duplicates/" + folder_name)
+            if len(orig_file_names) == 0:
+                UF.print_colored(
+                    "There are no files in the " + folder_name + " folder. Once files are in there, please restart the program and run this command again.", "red")
+                break
+            for file in orig_file_names:
+                path = "Duplicates/" + folder_name + "/" + file
+                UF.run_command(["rm" ,path], False)
+            UF.print_colored("Removed " + str(len(orig_file_names)) + " files in the Remove folder", "green")
+            break
+
+
+
+
