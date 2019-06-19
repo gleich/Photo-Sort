@@ -105,7 +105,7 @@ def rename_file(file_path, number):
     :return: new path, new_name
     """
     characters = list(file_path)
-    dot_index = ''.join(characters).rindex('.')
+    dot_index = ''.join(characters).rindex('.')  # Find the last instance of a dot
     last_slash_index = ''.join(characters).rindex('/')
     name_section = characters[last_slash_index:dot_index]
     current_name = "".join(name_section)
