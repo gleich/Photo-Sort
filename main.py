@@ -18,7 +18,7 @@ def main():
         if "windows" in current_platform.lower() or "linux" in current_platform.lower():
             raise Exception("This program doesn't support Linux or Windows. It will not be able to run.")
         UF.clear_output(50)
-        commands = ["sort folder and it's sub-folders", "sort current folder only", "move duplicate folders"]
+        commands = ["Sort folder and it's sub-folders", "Sort current folder only", "Move Keep content", "Delete Remove content"]
         print("Below is a list of all the commands. Please select one.\n")
         command_number = 0
         for command in commands:
@@ -87,6 +87,31 @@ def main():
             elif "n" in continue_question.lower():
                 UF.clear_output(10)
                 print(colored("The photos were not put in the folders.", 'yellow', attrs=['bold', 'blink']))
+        elif "content" in command_to_use:
+            UF.clear_output(50)
+            question_items = ["Where is the that you already sorted? (Not the duplicates folder)", "1. External Drive", "2. Folder", "3. Folder on External Drive\n---------------------------------\n"]
+            UF.clear_output(50)
+            question = "\n".join(question_items)
+            while True:
+                drive_or_folder = input(question)
+                if "folder" in drive_or_folder.lower() and "drive" in drive_or_folder.lower():
+                    FMF.cd_into_drive()
+                    FMF.cd_into_folder(False)
+                    break
+                elif "folder" in drive_or_folder.lower():
+                    FMF.cd_into_folder(True)
+                    break
+                elif "drive" in drive_or_folder.lower():
+                    FMF.cd_into_drive()
+                    break
+                else:
+                    UF.print_colored("Please pick a valid option!", "red")
+                    continue
+            UF.clear_output(50)
+            if "keep" in command_to_use:
+                FMF.duplicates_folder_management(True)
+            else:
+                FMF.duplicates_folder_management(False)
     else:
         print("The program will not run. To restart it run python main.py")
 
