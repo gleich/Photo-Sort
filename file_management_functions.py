@@ -2,7 +2,6 @@ import os
 import time
 import json
 import utility_functions as UF
-import photo_functions as PF
 
 
 def cd_into_drive():
