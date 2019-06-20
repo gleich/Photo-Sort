@@ -235,39 +235,39 @@ def duplicates_folder_management(keep):
     """
     while True:
         if keep:
-            folder_name = "Keep"
-            orig_file_names = os.listdir("./Duplicates/" + folder_name)  # orig because it still has the _COPY extension.
-            if len(orig_file_names) == 0:
-                UF.print_colored(
-                    "There are no files in the " + folder_name + " folder. Once files are in there, please restart the program and run this command again.", "red")
-                break
-            file_paths = []
+            try:
+                orig_file_names = os.listdir("./Duplicates/Keep")
+            except FileNotFoundError:
+                raise Exception("It seems as though the program has not been ran here before here. This is due to the fact that there is no folder called Duplicates/Keep.")
+            fixed_file_names = {}
             for file in orig_file_names:
                 if "_COPY" in file:
                     characters = list(file)
-                    _copy_index = "".join(characters).rindex("_COPY")
+                    _COPY_index = "".join(characters).rindex("_COPY")
                     dot_index = "".join(characters).rindex(".")
-                    orig_name = "".join(characters[0:_copy_index])
-                    extension = "".join(characters[dot_index:len(characters)])
-                    _copy_removed_path = "./Duplicates" + folder_name + "/" + orig_name + extension
-                    if _copy_removed_path in file_paths:
-                        UF.print_colored("It seems as though two files have the same name in the KEEP folder. Both of the files are called " + _copy_removed_path, "red")
-                        break
-                    UF.run_command(["mv", file, _copy_removed_path], False)
-                    file_paths.append(_copy_removed_path)
-                else:
-                    path = "./Duplicates/" + folder_name + "/" + file
-                    if path in file_paths:
-                        UF.print_colored("It seems as though two file have the same name in the KEEP folder. Both of the files are called " + file, "red")
-                        break
-                    file_paths.append(path)
-            exif_data = PF.photo_exif_data(file_paths)
-            for file in exif_data:
-                new_path = file["New Path"]
-                current_path = file["Current Path"]
-                UF.run_command(["mv", current_path, new_path], False)
-            amount_of_Files = len(file_paths)
-            UF.print_colored("Moved " + str(amount_of_Files) + " to they're correct spots in the folders", "green")
+                    file_extension = "".join(characters[dot_index:len(characters)])
+                    file_name = "".join(characters[0:_COPY_index])
+                    new_name = file_name + file_extension
+                    if new_name in fixed_file_names:
+                        copies = 0
+                        while True:
+                            copies += 1
+                            fixed_new_name = file_name + "_" + str(copies) + file_extension
+                            if fixed_new_name in fixed_file_names:
+                                continue
+                            else:
+                                fixed_file_names[file] = fixed_new_name
+                    else:
+                        fixed_file_names[file] = new_name
+            for orig_name in fixed_file_names.keys():
+                for new_name in fixed_file_names.values():
+                    orig_path = "Duplicates/Keep/" + orig_name
+                    new_path = "Duplicates/Keep/" + new_name
+                    UF.run_command(["mv", orig_path, new_path], False)
+                    move_path = new_file_path(UF.file_creation_date(new_path))
+                    UF.run_command(["mv", new_path, move_path], False)
+            num_of_files = len(fixed_file_names.values())
+            UF.print_colored("Moved " + str(num_of_files) + " files to their proper folders", "green")
             break
         else:
             folder_name = "Remove"
