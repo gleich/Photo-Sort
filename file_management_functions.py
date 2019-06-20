@@ -280,7 +280,3 @@ def duplicates_folder_management(keep):
                 UF.run_command(["rm" ,path], False)
             UF.print_colored("Removed " + str(len(orig_file_names)) + " files in the Remove folder", "green")
             break
-
-
-
-
