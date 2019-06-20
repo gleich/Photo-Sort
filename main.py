@@ -69,7 +69,7 @@ def main():
                 print("Created the folder:", folder)
             UF.print_colored("Created " + str(len(created_folders)) + " folders", "green")
             UF.clear_output(10)
-            question_parts = ["Are you sure that you wanna move all the photos into the folders?", colored("WARNING:", "red", attrs=['bold', 'blink']), "1. If you quit the program now, you will need to run the program again by running python main.py in terminal.", "2. The folders were already created, so you will need to run the command to just put the photos in folders.", colored("Answer with y or n\n", "yellow", attrs=["bold"])]
+            question_parts = ["Are you sure that you wanna move all the photos into the folders?", colored("WARNING:", "red", attrs=['bold', 'blink']), "1. If you quit the program now, you will need to run the program again by running python main.py in terminal.", "2. ", colored("Answer with y or n\n", "yellow", attrs=["bold"])]
             UF.clear_output(50)
             print("---------------------------------")
             UF.print_colored("Created " + str(len(created_folders)) + " folders", "green")
