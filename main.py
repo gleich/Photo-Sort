@@ -115,5 +115,5 @@ def main():
     else:
         print("The program will not run. To restart it run python main.py")
 
-
-main()
+if __name__ == "__main__":
+    main()
