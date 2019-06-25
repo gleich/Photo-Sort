@@ -140,7 +140,7 @@ def put_photos_in_folders(raw_exif_data):
                 rename_file_command = rename_file(current_path, copies)
                 new_name = rename_file_command[1]
                 new_path = rename_file_command[0]
-                if new_name in duplicate_file_names:
+                if new_name in duplicate_file_names or new_path in duplicate_file_paths:
                     continue
                 else:
                     duplicate_file_paths.append(new_path)
