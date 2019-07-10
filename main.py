@@ -11,21 +11,21 @@ def main():
     """
     UF.clear_output(50)
     UF.print_txt_content("information.txt")
-    print("\n")
-    continue_question = input("Do you understand the information above?\nAnswer with y or n\n")
+    print("\nDo you understand the information above?")
+    continue_question = input(colored("Answer with y or n\n", "yellow", attrs=['bold']))
     if "y" in continue_question.lower():
         current_platform = platform()
         if "windows" in current_platform.lower() or "linux" in current_platform.lower():
             raise Exception("This program doesn't support Linux or Windows. It will not be able to run.")
         UF.clear_output(50)
-        commands = ["sort folder and it's sub-folders", "sort current folder only"]
+        commands = ["Sort folder and it's sub-folders", "Sort current folder only", "Move Keep content (Not super reliable)", "Delete Remove content"]
         print("Below is a list of all the commands. Please select one.\n")
         command_number = 0
         for command in commands:
             command_number += 1
             print("{one}. {two}".format(one=command_number, two=command))
         print("")
-        command_to_use = input("Which of the commands shown above would you like to use?\n").lower()
+        command_to_use = input(colored("Which of the commands shown above would you like to use?\n", "yellow", attrs=['bold'])).lower()
         if "sort" in command_to_use and "folder" in command_to_use:
             file_types = FMF.pre_import_file_types()
             print()
@@ -69,7 +69,7 @@ def main():
                 print("Created the folder:", folder)
             UF.print_colored("Created " + str(len(created_folders)) + " folders", "green")
             UF.clear_output(10)
-            question_parts = ["Are you sure that you wanna move all the photos into the folders?", colored("WARNING:", "red", attrs=['bold', 'blink']), "1. If you quit the program now, you will need to run the program again by running python main.py in terminal.", "2. The folders were already created, so you will need to run the command to just put the photos in folders.", colored("Answer with y or n\n", "yellow", attrs=["bold"])]
+            question_parts = ["Are you sure that you wanna move all the photos into the folders?", colored("WARNING:", "red", attrs=['bold', 'blink']), "1. If you quit the program now, you will need to run the program again by running python main.py in terminal.", "2. ", colored("Answer with y or n\n", "yellow", attrs=["bold"])]
             UF.clear_output(50)
             print("---------------------------------")
             UF.print_colored("Created " + str(len(created_folders)) + " folders", "green")
@@ -79,13 +79,41 @@ def main():
             continue_question = input("\n".join(question_parts))
             if "y" in continue_question.lower():
                 duplicate_amount = FMF.put_photos_in_folders(exif_data)
+                print("")
                 UF.print_colored("Found " + str(duplicate_amount) + " Duplicates", "green")
-                UF.print_colored("All the photos were moved into their folders", 'green')
+                if duplicate_amount != 0:
+                    UF.print_colored("All the photos were moved into their folders", 'green')
+                    FMF.setup_duplicates_folder()
             elif "n" in continue_question.lower():
                 UF.clear_output(10)
                 print(colored("The photos were not put in the folders.", 'yellow', attrs=['bold', 'blink']))
+        elif "content" in command_to_use:
+            UF.clear_output(50)
+            question_items = ["Where is the that you already sorted? (Not the duplicates folder)", "1. External Drive", "2. Folder", "3. Folder on External Drive\n---------------------------------\n"]
+            UF.clear_output(50)
+            question = "\n".join(question_items)
+            while True:
+                drive_or_folder = input(question)
+                if "folder" in drive_or_folder.lower() and "drive" in drive_or_folder.lower():
+                    FMF.cd_into_drive()
+                    FMF.cd_into_folder(False)
+                    break
+                elif "folder" in drive_or_folder.lower():
+                    FMF.cd_into_folder(True)
+                    break
+                elif "drive" in drive_or_folder.lower():
+                    FMF.cd_into_drive()
+                    break
+                else:
+                    UF.print_colored("Please pick a valid option!", "red")
+                    continue
+            UF.clear_output(50)
+            if "keep" in command_to_use:
+                FMF.duplicates_folder_management(True)
+            else:
+                FMF.duplicates_folder_management(False)
     else:
         print("The program will not run. To restart it run python main.py")
 
-
-main()
+if __name__ == "__main__":
+    main()
