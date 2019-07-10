@@ -53,12 +53,10 @@ def file_creation_date(file_path):
     ran_command = run_command(["stat", "-f", "%SB", file_path], True)
     command_output = get_subprocess_output(ran_command).strip("\\n")
     elements = command_output.split(" ")
-    got_info = 0
     if len(elements) == 4:
         month = elements[0]
         day = elements[1]
         year = elements[3]
-        got_info
     elif len(elements) == 5:
         month = elements[0]
         day = elements[2]
