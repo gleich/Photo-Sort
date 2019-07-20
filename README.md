@@ -11,6 +11,9 @@ Below is a list of all the features of this program:
 
 1. Get the creation date of the file
 2. Move the file into the corresponding folder
+3. Detect duplicate file names and move them into a folder called `Duplicates`
+4. Take photos you moved into the keep folder and move them into their proper folder
+5. Take photos in remove folder and delete them. 
 
 
 ## Requirements
