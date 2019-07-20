@@ -1,5 +1,6 @@
+os: osx
 dist: xenial
 language: python
 python:
     - "3.7"
-script: python travis_ci_tests.py
+script: python unittesting.py
