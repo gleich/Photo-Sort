@@ -1,5 +1,4 @@
 os: osx
-dist: xenial
 language: shell
 before_install:
         - choco install python
