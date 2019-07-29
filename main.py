@@ -16,7 +16,7 @@ def main():
     if "y" in continue_question.lower():
         current_platform = platform()
         if "windows" in current_platform.lower() or "linux" in current_platform.lower():
-            raise Exception("This program doesn't support Linux or Windows. It will not be able to run.")
+            raise Exception("This program doesn't support Linux or Windows")
         UF.clear_output(50)
         commands = ["Sort folder and it's sub-folders", "Sort current folder only", "Move Keep content (Not super reliable)", "Delete Remove content"]
         print("Below is a list of all the commands. Please select one.\n")
